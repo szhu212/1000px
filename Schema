@@ -1,0 +1,30 @@
+1. Users
+| column name     | data type | details                   |
+|-----------------|:---------:|---------------------------|
+| id              |  integer  | not null, primary key     |
+| username        |   string  | not null, indexed, unique |
+| email           |   string  | not null, indexed, unique |
+| password_digest |   string  | not null                  |
+| session_token   |   string  | not null, indexed, unique |
+| created_at      | datetime  | not null                  |
+| updated_at      | datetime  | not null                  |
+
+2. Posts
+| column name           | data type | details                 |
+|-----------------------|:---------:|-------------------------|
+| id                    |  integer  | not null, primary key   |
+| title                 |   string  | not null                |
+| author_id             |   string  | not null                |
+| num_views             |  integer  | not null                |
+| equipment_or_material |   string  |                         |
+| editor's choice       |  boolean  | not null, default false |
+| created_at            |  datetime | not null                |
+| updated_at            |  datetime | not null                |
+
+3. Follows
+| column name | data type | details          |
+|-------------|:---------:|------------------|
+| follower_id |  integer  | not null, unique |
+| followed_id |  integer  | not null, unique |
+| created_at  |  datetime | not null         |
+| updated_at  |  datetime | not null         |
