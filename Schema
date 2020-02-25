@@ -28,3 +28,35 @@
 | followed_id |  integer  | not null, unique |
 | created_at  |  datetime | not null         |
 | updated_at  |  datetime | not null         |
+
+4. Likes
+| column name | data type | details          |
+|-------------|:---------:|------------------|
+| liker_id    |  integer  | not null, unique |
+| post_id     |  integer  | not null, unique |
+| created_at  |  datetime | not null         |
+| updated_at  |  datetime | not null         |
+
+5. Comments
+| column name | data type | details          |
+|-------------|:---------:|------------------|
+| body        |   string  | not null         |
+| liker_id    |  integer  | not null, unique |
+| post_id     |  integer  | not null, unique |
+| created_at  |  datetime | not null         |
+| updated_at  |  datetime | not null         |
+
+6. Tags
+| column name | data type | details            |
+|-------------|:---------:|--------------------|
+| body        |   string  | not null, limit 20 |
+| created_at  |  datetime | not null           |
+| updated_at  |  datetime | not null           |
+
+7.Taggings
+| column name | data type | details            |
+|-------------|:---------:|--------------------|
+| tag_id      |  integer  | not null, limit 20 |
+| post_id     |  integer  | not null, limit 20 |
+| created_at  |  datetime | not null           |
+| updated_at  |  datetime | not null           |
