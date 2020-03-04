@@ -26,12 +26,27 @@ class SignupForm extends React.Component {
         this.props.processForm(user)
     }
 
+    renderErrors() {
+        return(
+          <ul>
+            {this.props.errors.map((error, i) => (
+              <li key={i}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        );
+      }
+
     render(){
         return(
             <div>
                 <section className="container-section">
                     <form className="session-form">
                         <h2>Join 100Illusts</h2>
+                        <div className="err-box">
+                             <span className="error">{this.renderErrors()}</span>
+                        </div>
                         <label>
                                 <p>Username:</p>
                             <input type="text" value={this.state.username} onChange={this.handleInput('username')}/>
@@ -45,7 +60,7 @@ class SignupForm extends React.Component {
                             <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
                         </label>
                         <input type="submit" id="session-submit" onClick={this.handleSubmit} value="Sign up"/>
-                        <span>Already have an account? </span>
+                        <span className="bottom-message">Already have an account? </span>
                         <Link to="/login">Log in</Link>
                     </form>
                 </section>

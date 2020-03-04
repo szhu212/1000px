@@ -4,7 +4,9 @@ import { Link } from "react-router-dom"
 class NavBar extends React.Component {
     constructor(props){
         super(props);
+        // this.addDemoUser=this.addDemoUser.bind(this)
     }
+
 
     render(){
         const {currentUser} = this.props
@@ -15,7 +17,7 @@ class NavBar extends React.Component {
             ):
             (   
                  <div className='session-button'>
-                     <li><Link to="/login">Log In</Link></li>
+                     <li className="non-circled-button"><Link to="/login">Log In</Link></li>
                      <li className="circled-button"><Link to="/signup">Sign Up</Link></li>
                 </div>
 
@@ -36,7 +38,7 @@ class NavBar extends React.Component {
                 </ul>
                 <ul className="nav-right">
                     {display}
-                    <li className="circled-button">Demo User</li>
+                    {/* <li className="demo-button" >Demo User</li> */}
                 </ul>
 
             </header>
