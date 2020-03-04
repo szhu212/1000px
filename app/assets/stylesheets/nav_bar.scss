@@ -1,0 +1,49 @@
+.nav-bar h1{
+    font-size: 30px;
+}
+
+.logo {
+    margin-left: 20px;
+    width: 100px;
+    position: relative;
+}
+
+.logo-black {
+    position: relative;
+    z-index: 1;
+}
+
+.logo-mint {
+    position: absolute;
+    z-index: 2;
+    display: none;
+} 
+
+.logo:hover .logo-mint{
+    display: block;
+}
+
+.nav-bar{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.nav-left, .session-button,.nav-right {
+    display: flex;
+}
+
+.nav-left > li {
+    padding:10px 20px;
+    width: 150px;
+}
+
+.session-button > li{
+    padding: 5px 20px;
+}
+
+.circled-button {
+    border-radius: 20%/50%;
+    border: 3px solid black
+}
