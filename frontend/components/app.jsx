@@ -3,7 +3,7 @@ import NavBarContainer from'./nav_bar/nav_bar_container';
 import LoginFormContainer from './auth/login_form_container';
 import SignupFormContainer from './auth/signup_form_container';
 import { Route, Switch} from "react-router-dom";
-import { AuthRoute, ProtectedRoute } from '../util/route_util.js';
+import { AuthRoute, ProtectedRoute } from './route_util';
 
 const App = () => (
     <div>
