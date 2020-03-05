@@ -26,6 +26,11 @@ class SignupForm extends React.Component {
         this.props.processForm(user)
     }
 
+    componentDidMount(){
+        this.props.clearErrors()
+    }
+
+
     renderErrors() {
         return(
           <ul>

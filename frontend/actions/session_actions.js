@@ -16,7 +16,7 @@ const logoutCurrentUser = () =>({
 
 export const receiveSessionErrors = (errors) => ({
     type: 'RECEIVE_SESSION_ERRORS',
-    errors // error is an array
+    errors // errors is an array
 })
 
 export const clearErrors = () => ({

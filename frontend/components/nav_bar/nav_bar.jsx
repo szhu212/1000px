@@ -4,15 +4,18 @@ import { Link } from "react-router-dom"
 class NavBar extends React.Component {
     constructor(props){
         super(props);
-        // this.addDemoUser=this.addDemoUser.bind(this)
+        this.handleLogout=this.handleLogout.bind(this)
     }
 
+    handleLogout(e) {
+        this.props.logout();
+    };
 
     render(){
         const {currentUser} = this.props
         const display = currentUser? (
                 <div className='upload-button'>   
-                   <li><button>Upload</button></li> 
+                   <button>Upload</button>
                 </div>
             ):
             (   
@@ -21,7 +24,21 @@ class NavBar extends React.Component {
                      <li className="circled-button"><Link to="/signup">Sign Up</Link></li>
                 </div>
 
-            )
+            ) 
+
+        const userButton = currentUser? (
+            <div className="dropdown-container">
+                 <img className="dropdown-trigger" src="assets/userpic.png"/>
+                 <div className="dropdown-list">
+                     <p>Profile</p>
+                     <p onClick={()=>this.handleLogout()}>Log out</p>
+                 </div>
+             </div>
+        ):
+        (   
+             <div>  </div>
+        ) 
+       
 
         return(
             <header className="nav-bar">
@@ -33,12 +50,11 @@ class NavBar extends React.Component {
                 </div>
                 <ul className="nav-left">
                     <li> <Link to="/discover">Discover</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    
+                    <li><Link to="/about">About</Link></li>  
                 </ul>
+                    {userButton}
                 <ul className="nav-right">
                     {display}
-                    {/* <li className="demo-button" >Demo User</li> */}
                 </ul>
 
             </header>

@@ -7,7 +7,7 @@ class LoginForm extends React.Component {
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
         };
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,6 +26,10 @@ class LoginForm extends React.Component {
         this.props.processForm(user);
     };
 
+    componentDidMount(){
+        this.props.clearErrors()
+    }
+
     renderErrors() {
         return(
           <ul>
@@ -37,6 +41,7 @@ class LoginForm extends React.Component {
           </ul>
         );
     };
+    
 
     render(){
         return(
