@@ -3,20 +3,19 @@
 .homepage-pic-container{
     // position: relative;
     background-image: image-url('homepage.png');
-    width: 1450px;
-    height: 550px;
+    // width: 1450px;
+    height: 500px;
     background-repeat: no-repeat center;
     background-size: cover;
     overflow: hidden;
-    background-position: 25%;
+    background-position: 10%;
 }
 
 .greeting {
     position: absolute;
     top: 230px;
-    left: 136px;
-    width: 600px;
-    width: 540px;
+    left: 130px;
+    width: 450px;
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
@@ -30,4 +29,23 @@
     margin-top: 10px;
     font-weight: bolder;
     
+}
+
+@media only screen and (min-width: 1200px) {
+    .homepage-pic-container {
+        width: 100%;
+    }
+    // .greeting {
+    // width: 480px;
+    // }
+}
+
+@media only screen and (max-width: 1200px) {
+    .homepage-pic-container {
+        width: 1200px;
+        width: 100%;
+    }
+    // .greeting{
+    //     width: 400px;
+    // }
 }

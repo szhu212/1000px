@@ -13,6 +13,6 @@ danny = User.create(username:"Danny", email:"db@gmail.com", password:"1234ab")
 
 Picture.destroy_all
 
-winter = Picture.create(title:"Winter Morning", author_id:sz.id, equipment_or_material:"Wacom Intuo 4 Tablet", editors_choice:"true")
-cat = Picture.create(title:"Cat Sketch", author_id:danny.id, equipment_or_material:"Water color", editors_choice:"false")
+winter = Picture.create(title:"Winter Morning", description:" Beautiful winter morning @halfmoon bay, CA.", author_id:sz.id, equipment_or_material:"Wacom Intuo 4 Tablet", editors_choice:"true")
+cat = Picture.create(title:"Fur ball", description:"Cat sketch <3<3<3",author_id:danny.id, equipment_or_material:"Water color", editors_choice:"false")
 
