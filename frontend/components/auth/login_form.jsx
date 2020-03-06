@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 class LoginForm extends React.Component {
     constructor(props){
         super(props);
+        // debugger;
         this.state = {
             username: "",
             password: "",
@@ -46,24 +47,26 @@ class LoginForm extends React.Component {
     render(){
         return(
             <div>
-                <form className="session-form">  
-                    <h2>Log in to 100Illusts</h2>
-                    <div className="err-box">
-                         <span className="error">{this.renderErrors()}</span>
-                    </div>
-                    <label>
-                        <p>Username:</p>
-                        <input type="text" value={this.state.username} onChange={this.handleInput('username')}/>
-                    </label>
-                    <label>
-                        <p>Password:</p>
-                        <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
-                    </label>
-                    <input type="submit" id="session-submit" onClick={this.handleSubmit} value="Log in"/>
-                    <input type="submit" id="demo-user" onClick={()=>{this.props.processForm({username:"Skylar", password:"aaa111"})}} value="Demo login"/>
-                    <span className="bottom-message">Don't have an account? </span>
-                    <Link to="/signup">Sign up</Link>
-                </form>
+                 <section className="container-section">
+                    <form className="session-form">  
+                        <h2>Log in to 100Illusts</h2>
+                        <div className="err-box">
+                            <span className="error">{this.renderErrors()}</span>
+                        </div>
+                        <label>
+                            <p>Username:</p>
+                            <input type="text" value={this.state.username} onChange={this.handleInput('username')}/>
+                        </label>
+                        <label>
+                            <p>Password:</p>
+                            <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
+                        </label>
+                        <input type="submit" id="session-submit" onClick={this.handleSubmit} value="Log in"/>
+                        <input type="submit" id="demo-user" onClick={()=>{this.props.processForm({username:"Skylar", password:"aaa111"})}} value="Demo login"/>
+                        <span className="bottom-message">Don't have an account? </span>
+                        <Link to="/signup">Sign up</Link>
+                    </form>
+                </section>
             </div>
         );
     };

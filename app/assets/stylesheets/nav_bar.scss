@@ -1,43 +1,59 @@
-.nav-bar h1{
-    font-size: 30px;
-}
-
-.logo {
-    margin-left: 20px;
-    width: 100px;
-    position: relative;
-}
-
-.logo-black {
-    position: relative;
-    z-index: 1;
-}
-
-.logo-mint {
-    position: absolute;
-    z-index: 2;
-    opacity:0;
-} 
-
-.logo:hover .logo-mint{
-    opacity:100;
-    transition: all .25s ease-in-out;
-}
-
 .nav-bar{
     margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 }
 
-.nav-left, .session-button,.nav-right {
+.nav-bar h1{
+    font-size: 28px;
+}
+
+.nav-left {
+    margin-left: 20px;
+    width: 100px;
+    position: relative;
+}
+
+
+.logo-black {
+    position: relative;
+    z-index: 1;
+    height: 30px;
+}
+
+.logo-mint {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    height: 30px;
+} 
+
+.logo-mint:hover {
+    opacity:100;
+    transition: all .25s ease-in-out;
+}
+
+.nav-left, .subnav-left, .session-button,.nav-right {
     display: flex;
 }
 
-.nav-left > li {
-    padding:10px 20px;
+.dropdown-container {
+    margin-right: 20px;
+}
+
+.subnav-left > li {
+    padding:10px 10px;
     width: 150px;
+}
+
+.discover-button {
+    margin-left:80px;
+}
+
+.upload-button{
+    margin-right: 10px;
 }
 
 .session-button > li{
@@ -57,12 +73,12 @@
     border-color: rgb(64, 214, 184);
 }
 
-.demo-button{
-    padding: 5px 20px;
-    border-radius: 15%/50%;
-    border: 2.5px solid black;
-    margin: 0px 5px;
-}
+// .demo-button{
+//     padding: 5px 20px;
+//     border-radius: 15%/50%;
+//     border: 2.5px solid black;
+//     margin: 0px 5px;
+// }
 
 
 .non-circled-button{
@@ -99,6 +115,7 @@
     // box-shadow: 1px 1px 1px 1px rgba(138, 136, 136, 0.5);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 12px, rgba(0, 0, 0, 0.08) 0px 0px 4px;
     border-radius: 5px;
+    z-index: 1;
     // top: -10px;
 }
 

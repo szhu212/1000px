@@ -1,0 +1,33 @@
+
+
+.homepage-pic-container{
+    // position: relative;
+    background-image: url("homepage1");
+    width: 1450px;
+    height: 550px;
+    background-repeat: no-repeat center;
+    background-size: cover;
+    overflow: hidden;
+    background-position: 25%;
+}
+
+.greeting {
+    position: absolute;
+    top: 230px;
+    left: 136px;
+    width: 600px;
+    width: 540px;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.greeting h2{
+    font-size: 47px;
+    font-weight: 800;
+}
+
+.greeting p {
+    margin-top: 10px;
+    font-weight: bolder;
+    
+}

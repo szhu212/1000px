@@ -12,7 +12,7 @@ class NavBar extends React.Component {
     };
 
     render(){
-        const {currentUser} = this.props
+        const { currentUser } = this.props
         const display = currentUser? (
                 <div className='upload-button'>   
                    <button>Upload</button>
@@ -23,12 +23,11 @@ class NavBar extends React.Component {
                      <li className="non-circled-button"><Link to="/login">Log In</Link></li>
                      <li className="circled-button"><Link to="/signup">Sign Up</Link></li>
                 </div>
-
             ) 
 
         const userButton = currentUser? (
             <div className="dropdown-container">
-                 <img className="dropdown-trigger" src="assets/userpic.png"/>
+                 <img className="dropdown-trigger" src="assets/userpic2.png"/>
                  <div className="dropdown-list">
                      <p>Profile</p>
                      <p onClick={()=>this.handleLogout()}>Log out</p>
@@ -36,24 +35,25 @@ class NavBar extends React.Component {
              </div>
         ):
         (   
+            // To be updated
              <div>  </div>
         ) 
        
 
         return(
             <header className="nav-bar">
-                <div className="logo">
-                    <Link to="/">
-                        <img className="logo-mint" src="assets/logo_mint.png"/>
-                    </Link>
-                    <img className="logo-black" src="assets/logo_black.png"/>
+                <div className="nav-left">
+                        <Link to="/">
+                            <img className="logo-mint" src="assets/logo_mint.png"/>
+                        </Link>
+                        <img className="logo-black" src="assets/logo_black.png"/>
+                    <ul className="subnav-left">
+                        <li className="discover-button"> <Link to="/discover">Discover</Link></li>
+                        <li><Link to="/about">About</Link></li>  
+                    </ul>
                 </div>
-                <ul className="nav-left">
-                    <li> <Link to="/discover">Discover</Link></li>
-                    <li><Link to="/about">About</Link></li>  
-                </ul>
-                    {userButton}
                 <ul className="nav-right">
+                    {userButton}
                     {display}
                 </ul>
 
