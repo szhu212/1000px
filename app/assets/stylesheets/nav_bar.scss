@@ -65,6 +65,10 @@
     border: 2.5px solid black;
     width: 70px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -2px;
 }
 
 .nav-bar li:hover, .upload-button:hover{
@@ -72,14 +76,6 @@
     transition: all .25s ease-in-out;
     border-color: rgb(64, 214, 184);
 }
-
-// .demo-button{
-//     padding: 5px 20px;
-//     border-radius: 15%/50%;
-//     border: 2.5px solid black;
-//     margin: 0px 5px;
-// }
-
 
 .non-circled-button{
     margin-top: 3px;
