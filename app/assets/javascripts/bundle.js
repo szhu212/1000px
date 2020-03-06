@@ -702,7 +702,7 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
         className: "dropdown-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "dropdown-trigger",
-        src: "assets/userpic.png"
+        src: window.userpicURL
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dropdown-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -719,10 +719,10 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
         to: "/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "logo-mint",
-        src: "assets/logo_mint.png"
+        src: window.logo_mintURL
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "logo-black",
-        src: "assets/logo_black.png"
+        src: window.logo_blackURL
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "subnav-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {

@@ -27,7 +27,7 @@ class NavBar extends React.Component {
 
         const userButton = currentUser? (
             <div className="dropdown-container">
-                 <img className="dropdown-trigger" src="assets/userpic.png"/>
+                 <img className="dropdown-trigger" src={window.userpicURL}/>
                  <div className="dropdown-list">
                      <p>Profile</p>
                      <p onClick={()=>this.handleLogout()}>Log out</p>
@@ -44,9 +44,9 @@ class NavBar extends React.Component {
             <header className="nav-bar">
                 <div className="nav-left">
                         <Link to="/">
-                            <img className="logo-mint" src="assets/logo_mint.png"/>
+                            <img className="logo-mint" src={window.logo_mintURL}/>
                         </Link>
-                        <img className="logo-black" src="assets/logo_black.png"/>
+                        <img className="logo-black" src={window.logo_blackURL}/>
                     <ul className="subnav-left">
                         <li className="discover-button"> <Link to="/discover">Discover</Link></li>
                         <li><Link to="/about">About</Link></li>  
