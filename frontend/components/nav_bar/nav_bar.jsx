@@ -27,7 +27,7 @@ class NavBar extends React.Component {
 
         const userButton = currentUser? (
             <div className="dropdown-container">
-                 <img className="dropdown-trigger" src="assets/userpic2.png"/>
+                 <img className="dropdown-trigger" src="assets/userpic.png"/>
                  <div className="dropdown-list">
                      <p>Profile</p>
                      <p onClick={()=>this.handleLogout()}>Log out</p>

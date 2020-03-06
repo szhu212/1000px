@@ -702,7 +702,7 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
         className: "dropdown-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "dropdown-trigger",
-        src: "assets/userpic2.png"
+        src: "assets/userpic.png"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dropdown-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
