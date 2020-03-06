@@ -801,7 +801,7 @@ var NotFoundForm = function NotFoundForm(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "not-found-logo",
     src: window.logo_blackURL
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Oops! This page doesn\u2019t exist."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Discover photographs from around the world, instead:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Oops! This page doesn\u2019t exist."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Discover illustrations from around the world, instead:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
   }, " Homepage "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/discovery"
