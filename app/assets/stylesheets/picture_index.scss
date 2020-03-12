@@ -1,0 +1,31 @@
+.picture-index-container{
+    display:flex;
+    width:100%;
+    justify-content: center;
+}
+
+.picture-index{
+    width: 90%;
+    height: auto;
+    display: flex;
+    // align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.picture-item {
+    flex-grow: 1;
+    position: relative;
+    margin: 5px;
+    display:block;
+    // min-width: 200px;
+}
+
+.picture-img {
+    height: 200px;
+    object-fit: cover;
+    min-width: 100%;
+    max-width: 100%;
+    // width:100%;
+    vertical-align: bottom;
+}
+
