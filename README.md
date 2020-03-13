@@ -9,7 +9,7 @@
 * Browse illustrations chosen by 100Illust editors on the home page
 * Discover newest illustrations on the discover page
 * Browse show page of each illustration
-* Upload your own illustrations (to be implemented)
+* Upload and shareyour own illustrations (to be implemented)
 * Like other user's illustrations (to be implemented)
 
 
