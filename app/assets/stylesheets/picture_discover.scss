@@ -4,17 +4,16 @@
 
 .discover-page-container p {
     font-size: 20px;
+    color: rgb(105, 105, 105);
 }
 
 .discover-text-container {
     margin-top:  30px;
-    margin-bottom: 20px;
-    margin-left: 50px;
+    margin-bottom: 30px;
+    margin-left: 60px;
     background-image: image-url('watercolor2.png');
     background-repeat: no-repeat;
-    background-size: 30%;
-    // min-width: 200%;
-    // max-width: 200%;
+    background-size: 350px;
     position: relative;
     overflow: hidden;
 }

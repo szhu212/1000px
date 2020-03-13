@@ -49,7 +49,7 @@ class NavBar extends React.Component {
                         <img className="logo-black" src={window.logo_blackURL}/>
                     <ul className="subnav-left">
                         <li className="discover-button"> <Link to="/discover">Discover</Link></li>
-                        <li><Link to="/about">About</Link></li>  
+                        {/* <li><Link to="/about">About</Link></li>   */}
                     </ul>
                 </div>
                 <ul className="nav-right">

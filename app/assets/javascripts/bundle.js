@@ -851,9 +851,7 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
         className: "discover-button"
       }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/discover"
-      }, "Discover")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/about"
-      }, "About")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, "Discover")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "nav-right"
       }, userButton, display));
     }
@@ -925,7 +923,9 @@ var NotFoundForm = function NotFoundForm(props) {
     src: window.logo_blackURL
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Oops! This page doesn\u2019t exist."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Discover illustrations from around the world, instead:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
-  }, " Homepage ")));
+  }, " Homepage "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/discover"
+  }, " Discover ")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NotFoundForm);
@@ -982,7 +982,8 @@ var PictureDiscover = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var pictures = this.props.pictures ? this.props.pictures : null;
+      var pictures = this.props.pictures ? this.props.pictures : null; // const filtered_pictures = this.props.pictures ? pictures.sort((a,b)=> a.created_at - b.created_at) : null
+
       var display = Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-index"
       }, pictures.map(function (picture) {
