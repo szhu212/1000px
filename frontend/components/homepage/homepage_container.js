@@ -4,8 +4,10 @@ import Homepage from './homepage';
 
 const mapStateToProps = (state, ownProps) => {
   // debugger
+  // const editorsChoice = state.entities.pictures[ownProps.match.params.pictureId]? state.entities.pictures[ownProps.match.params.pictureId].editors_choice : null
     return {
       pictures: Object.values(state.entities.pictures),
+      // editorsChoice: editorsChoice,
     };
   };
   

@@ -1,0 +1,31 @@
+.discover-page-container h2 {
+    font-size: 40px;
+}
+
+.discover-page-container p {
+    font-size: 20px;
+}
+
+.discover-text-container {
+    margin-top:  30px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    background-image: image-url('watercolor2.png');
+    background-repeat: no-repeat;
+    background-size: 30%;
+    // min-width: 200%;
+    // max-width: 200%;
+    position: relative;
+    overflow: hidden;
+}
+
+.background-img-holder{
+    background-image: image-url('green-watercolor.png');
+    position: absolute;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    margin-left: 350px;
+    top:-30px;
+}

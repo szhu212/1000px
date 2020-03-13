@@ -6,22 +6,18 @@ class PictureIndex extends React.Component  {
     constructor(props){
         super(props);
     }
-    
+
     componentDidMount(){
-        // debugger
         this.props.fetchPictures()
-        // debugger
     }
 
     render() {
-        // const {pictures} = this.props
         const pictures = this.props.pictures ? (this.props.pictures) : null
-        // const pictures = Object.keys(this.props.pictures).length >0 ? (this.props.pictures) : null
-        // debugger
+        const filtered_pictures = this.props.pictures ? pictures.filter(picture=> picture.editors_choice === true) : null
+
         const display = Object.keys(pictures).length > 0 ? (
             <div className="picture-index">
-                 
-                    {pictures.map(picture => (
+                    {filtered_pictures.map(picture => (
                          <PictureIndexItem 
                             picture = {picture}
                             key = {picture.id} 

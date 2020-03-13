@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom"
 import PictureIndex from "../picture/picture_index"
 
-const Homepage = ({pictures, fetchPictures}) => {
+const Homepage = ({pictures, editorsChoice, fetchPictures}) => {
     // debugger
     return(
     <div className="Homepage">
@@ -21,6 +21,7 @@ const Homepage = ({pictures, fetchPictures}) => {
             <PictureIndex 
                 pictures={pictures}
                 fetchPictures={fetchPictures}
+                // editorsChoice={editorsChoice}
              />
         </div>
     </div>)

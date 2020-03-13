@@ -7,6 +7,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NotFoundForm from'./not_found_form';
 import HomepageContainer from'./homepage/homepage_container';
 import PictureShowContainer from '../components/picture/picture_show_container';
+import PictureDiscoverContainer from './picture/picture_descover_container';
 
 
 
@@ -20,6 +21,7 @@ const App = () => (
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <Route exact path="/" component={HomepageContainer} />
+            <Route exact path="/discover" component={PictureDiscoverContainer} />
             <Route path="/pictures/:pictureId" component={PictureShowContainer} />
             <Route path="*" component={NotFoundForm} />
         </Switch>

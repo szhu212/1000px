@@ -289,6 +289,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _not_found_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./not_found_form */ "./frontend/components/not_found_form.jsx");
 /* harmony import */ var _homepage_homepage_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./homepage/homepage_container */ "./frontend/components/homepage/homepage_container.js");
 /* harmony import */ var _components_picture_picture_show_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/picture/picture_show_container */ "./frontend/components/picture/picture_show_container.js");
+/* harmony import */ var _picture_picture_descover_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./picture/picture_descover_container */ "./frontend/components/picture/picture_descover_container.js");
+
 
 
 
@@ -312,6 +314,10 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _homepage_homepage_container__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+    exact: true,
+    path: "/discover",
+    component: _picture_picture_descover_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/pictures/:pictureId",
     component: _components_picture_picture_show_container__WEBPACK_IMPORTED_MODULE_8__["default"]
@@ -681,6 +687,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Homepage = function Homepage(_ref) {
   var pictures = _ref.pictures,
+      editorsChoice = _ref.editorsChoice,
       fetchPictures = _ref.fetchPictures;
   // debugger
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -697,7 +704,8 @@ var Homepage = function Homepage(_ref) {
     className: "medal-icon"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Editors' Choice"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Discover fresh inspiration daily. Your illustrations could even be featured in our handpicked Editors\u2019 Choice Gallery."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_picture_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
     pictures: pictures,
-    fetchPictures: fetchPictures
+    fetchPictures: fetchPictures // editorsChoice={editorsChoice}
+
   })));
 };
 
@@ -723,8 +731,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   // debugger
+  // const editorsChoice = state.entities.pictures[ownProps.match.params.pictureId]? state.entities.pictures[ownProps.match.params.pictureId].editors_choice : null
   return {
-    pictures: Object.values(state.entities.pictures)
+    pictures: Object.values(state.entities.pictures) // editorsChoice: editorsChoice,
+
   };
 };
 
@@ -922,6 +932,121 @@ var NotFoundForm = function NotFoundForm(props) {
 
 /***/ }),
 
+/***/ "./frontend/components/picture/picture_descover.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/picture/picture_descover.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _picture_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./picture_index_item */ "./frontend/components/picture/picture_index_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var PictureDiscover = /*#__PURE__*/function (_React$Component) {
+  _inherits(PictureDiscover, _React$Component);
+
+  function PictureDiscover(props) {
+    _classCallCheck(this, PictureDiscover);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(PictureDiscover).call(this, props));
+  }
+
+  _createClass(PictureDiscover, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchPictures();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var pictures = this.props.pictures ? this.props.pictures : null;
+      var display = Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture-index"
+      }, pictures.map(function (picture) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          picture: picture,
+          key: picture.id
+        });
+      })) : null;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "discover-page-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "discover-text-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-img-holder"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Discover fresh inspiration daily. ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture-index-container"
+      }, display));
+    }
+  }]);
+
+  return PictureDiscover;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (PictureDiscover);
+
+/***/ }),
+
+/***/ "./frontend/components/picture/picture_descover_container.js":
+/*!*******************************************************************!*\
+  !*** ./frontend/components/picture/picture_descover_container.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_picture_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/picture_actions */ "./frontend/actions/picture_actions.js");
+/* harmony import */ var _picture_picture_descover__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../picture/picture_descover */ "./frontend/components/picture/picture_descover.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  // debugger
+  // const editorsChoice = state.entities.pictures[ownProps.match.params.pictureId]? state.entities.pictures[ownProps.match.params.pictureId].editors_choice : null
+  return {
+    pictures: Object.values(state.entities.pictures) //   editorsChoice: editorsChoice,
+
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchPictures: function fetchPictures() {
+      return dispatch(Object(_actions_picture_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPictures"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_picture_picture_descover__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/picture/picture_index.jsx":
 /*!*******************************************************!*\
   !*** ./frontend/components/picture/picture_index.jsx ***!
@@ -967,19 +1092,18 @@ var PictureIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(PictureIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
-      this.props.fetchPictures(); // debugger
+      this.props.fetchPictures();
     }
   }, {
     key: "render",
     value: function render() {
-      // const {pictures} = this.props
-      var pictures = this.props.pictures ? this.props.pictures : null; // const pictures = Object.keys(this.props.pictures).length >0 ? (this.props.pictures) : null
-      // debugger
-
+      var pictures = this.props.pictures ? this.props.pictures : null;
+      var filtered_pictures = this.props.pictures ? pictures.filter(function (picture) {
+        return picture.editors_choice === true;
+      }) : null;
       var display = Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-index"
-      }, pictures.map(function (picture) {
+      }, filtered_pictures.map(function (picture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           picture: picture,
           key: picture.id
