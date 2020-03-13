@@ -8,33 +8,41 @@ class PictureShow extends React.Component {
     constructor(props){
         super(props);
         this.handlePrevClick = this.handlePrevClick.bind(this);
-        this.handleNextClick = this.handleNextClick.bind(this)
+        this.handleNextClick = this.handleNextClick.bind(this);
+        // this.state = {
+        //     error: ""
+        // };
     }
  
     componentDidMount(){
         const picId = this.props.pictureId;
-        this.props.fetchPicture(picId)
-
+        this.props.fetchPicture(picId);
     }
+
 
     componentDidUpdate(prevProps){
         if (prevProps.pictureId !== this.props.pictureId)
-        {this.props.fetchPicture(this.props.pictureId)}
+        {this.props.fetchPicture(this.props.pictureId)
+        }
+        if(Object.values(this.props.hashOfIds).length <= 1){
+            this.props.fetchPictures()
+        }
     }
 
     handlePrevClick() {
-        // debugger
         const picId = this.props.pictureId;
         const hashOfIds = this.props.hashOfIds;
         const firstIdx = hashOfIds[0]
         let prevId = parseInt(picId) - 1
         if (prevId < firstIdx) {
             this.props.history.push(`/pictures/${picId}`)
+            this.setState({error:"This is the first illustration."})
         }
         else{
             this.props.history.push(`/pictures/${prevId}`);
 
         }
+        
     }
 
     handleNextClick(){
@@ -47,7 +55,6 @@ class PictureShow extends React.Component {
         }
         else{
             this.props.history.push(`/pictures/${nextId}`);
-
         }
     }
 
@@ -57,6 +64,7 @@ class PictureShow extends React.Component {
         const authorName = this.props.picture? this.props.picture.authorName : null
         let editors = "No"
         if (editorsChoice){editors = "Yes"}
+        // const displayError = this.state.error.length > 0 ? this.state.error : null
         
     return(
 

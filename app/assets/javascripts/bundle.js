@@ -915,9 +915,7 @@ var NotFoundForm = function NotFoundForm(props) {
     src: window.logo_blackURL
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Oops! This page doesn\u2019t exist."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Discover illustrations from around the world, instead:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
-  }, " Homepage "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/discovery"
-  }, " Discover ")));
+  }, " Homepage ")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NotFoundForm);
@@ -1120,7 +1118,10 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PictureShow).call(this, props));
     _this.handlePrevClick = _this.handlePrevClick.bind(_assertThisInitialized(_this));
-    _this.handleNextClick = _this.handleNextClick.bind(_assertThisInitialized(_this));
+    _this.handleNextClick = _this.handleNextClick.bind(_assertThisInitialized(_this)); // this.state = {
+    //     error: ""
+    // };
+
     return _this;
   }
 
@@ -1136,11 +1137,14 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
       if (prevProps.pictureId !== this.props.pictureId) {
         this.props.fetchPicture(this.props.pictureId);
       }
+
+      if (Object.values(this.props.hashOfIds).length <= 1) {
+        this.props.fetchPictures();
+      }
     }
   }, {
     key: "handlePrevClick",
     value: function handlePrevClick() {
-      // debugger
       var picId = this.props.pictureId;
       var hashOfIds = this.props.hashOfIds;
       var firstIdx = hashOfIds[0];
@@ -1148,6 +1152,9 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
 
       if (prevId < firstIdx) {
         this.props.history.push("/pictures/".concat(picId));
+        this.setState({
+          error: "This is the first illustration."
+        });
       } else {
         this.props.history.push("/pictures/".concat(prevId));
       }
@@ -1178,7 +1185,8 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
 
       if (editorsChoice) {
         editors = "Yes";
-      }
+      } // const displayError = this.state.error.length > 0 ? this.state.error : null
+
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-show-container"
@@ -1276,6 +1284,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchPicture: function fetchPicture(id) {
       return dispatch(Object(_actions_picture_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPicture"])(id));
+    },
+    fetchPictures: function fetchPictures() {
+      return dispatch(Object(_actions_picture_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPictures"])());
     }
   };
 };

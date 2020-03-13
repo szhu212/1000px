@@ -94,11 +94,16 @@
     transition: all .25s ease-in-out;
 }
 
-// .prev-pic-button {
-//     // background-image: image-url('arrow-left.svg');
-// }
+.prev-pic-container h3 {
+    color: rgb(211, 85, 85);
+    text-justify: center;
+    position: absolute;
+}
 
-// .next-pic-container {
-//     flex-grow: 1;
-//     // background-image: image-url('arrow-right.svg');
-// }
+.prev-pic-container {
+    position: relative;
+}
+
+.equip-and-editor-box {
+    margin-bottom: 20px;
+}

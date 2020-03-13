@@ -6,11 +6,13 @@ class PictureIndex extends React.Component  {
     constructor(props){
         super(props);
     }
+    
     componentDidMount(){
         // debugger
         this.props.fetchPictures()
         // debugger
     }
+
     render() {
         // const {pictures} = this.props
         const pictures = this.props.pictures ? (this.props.pictures) : null

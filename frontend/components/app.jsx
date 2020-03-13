@@ -8,6 +8,8 @@ import NotFoundForm from'./not_found_form';
 import HomepageContainer from'./homepage/homepage_container';
 import PictureShowContainer from '../components/picture/picture_show_container';
 
+
+
 const App = () => (
     <div>
         <header>

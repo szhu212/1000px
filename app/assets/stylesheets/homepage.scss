@@ -1,6 +1,6 @@
 
 
-.homepage-pic-container{
+.homepage-pic-container {
     // position: relative;
     background-image: image-url('homepage.png');
     // width: 1450px;
@@ -67,13 +67,26 @@
     box-sizing: border-box;
     background-size : 50px;
 }
-.medal-icon-container{
+.medal-icon-container {
     margin-top: 10px;
     display: flex;
     justify-content: center;
 }
 
-.index-container p{
+.index-container p {
     text-align: center;
     // color:rgb(210, 210, 210)
+    line-height: 25px;
+    margin-bottom: 10px;
 }
+
+.index-container h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.index-container{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+

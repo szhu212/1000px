@@ -9,7 +9,7 @@ const NotFoundForm = (props) => (
             <h2>Oops! This page doesn’t exist.</h2>
             <p>Discover illustrations from around the world, instead:</p>
             <Link to="/"> Homepage </Link>
-            <Link to="/discovery"> Discover </Link>
+            {/* <Link to="/discovery"> Discover </Link> */}
         </div>
 
     </div>
