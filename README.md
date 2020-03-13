@@ -2,7 +2,7 @@
 
 [Check out the site live](https://one-hundred-illusts.herokuapp.com/)
 
-100Illusts, a 500px clone, is a illustration gallery application that allows users to publicly share original illustrations and paintings they created that can be viewed and liked by other users. 
+100Illusts, a 500px clone, is an illustration gallery application that allows users to publicly share original illustrations and paintings they created that can be viewed and liked by other users. 
 
 ## Features
 
