@@ -1,24 +1,15 @@
-# README
+# 100Illusts
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Check out the site live](https://one-hundred-illusts.herokuapp.com/)
 
-Things you may want to cover:
+100Illusts, a 500px clone, is an illustration gallery application that allows users to publicly share original illustrations and paintings they created that can be viewed and liked by other users. 
 
-* Ruby version
+## Features
 
-* System dependencies
+* Browse illustrations chosen by 100Illust editors on the home page
+* Discover newest illustrations on the discover page
+* Browse show page of each illustration
+* Upload and shareyour own illustrations (to be implemented)
+* Like other user's illustrations (to be implemented)
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
