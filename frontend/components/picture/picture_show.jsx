@@ -9,6 +9,7 @@ class PictureShow extends React.Component {
         super(props);
         this.handlePrevClick = this.handlePrevClick.bind(this);
         this.handleNextClick = this.handleNextClick.bind(this);
+        this.getKeyByValue = this.getKeyByValue.bind(this)
         // this.state = {
         //     error: ""
         // };
@@ -29,12 +30,19 @@ class PictureShow extends React.Component {
         }
     }
 
+    getKeyByValue(object, value) {
+        return Object.keys(object).find(key => object[key] === value);
+    }
+
     handlePrevClick() {
-        const picId = this.props.pictureId;
+        const picId = parseInt(this.props.pictureId);
         const hashOfIds = this.props.hashOfIds;
-        const firstIdx = hashOfIds[0]
-        let prevId = parseInt(picId) - 1
-        if (prevId < firstIdx) {
+        // const firstIdx = hashOfIds[0]
+        // let prevId = parseInt(picId) - 1
+        const picIdx = this.getKeyByValue(hashOfIds, picId)
+        let prevIdx = picIdx - 1
+        let prevId = hashOfIds[prevIdx]
+           if (prevIdx < 0) {
             this.props.history.push(`/pictures/${picId}`)
             this.setState({error:"This is the first illustration."})
         }
@@ -42,20 +50,40 @@ class PictureShow extends React.Component {
             this.props.history.push(`/pictures/${prevId}`);
 
         }
+        // if (prevId < firstIdx) {
+        //     this.props.history.push(`/pictures/${picId}`)
+        //     this.setState({error:"This is the first illustration."})
+        // }
+        // else{
+        //     this.props.history.push(`/pictures/${prevId}`);
+
+        // }
         
     }
 
     handleNextClick(){
-        const picId = this.props.pictureId;
+        const picId = parseInt(this.props.pictureId);
         const hashOfIds = this.props.hashOfIds;
-        const lastIdx = hashOfIds[Object.values(hashOfIds).length-1]
-        let nextId = parseInt(picId) + 1
-        if (nextId > lastIdx) {
+        const picIdx = parseInt(this.getKeyByValue(hashOfIds, picId));
+        // const lastIdx = hashOfIds[Object.values(hashOfIds).length-1]
+        let lastIdx = Object.values(hashOfIds).length - 1
+        // debugger
+        // let nextId = parseInt(picId) + 1
+        let nextIdx = picIdx + 1
+        let nextId = hashOfIds[nextIdx]
+        // debugger
+        if (nextIdx > lastIdx) {
             this.props.history.push(`/pictures/${picId}`)
         }
         else{
             this.props.history.push(`/pictures/${nextId}`);
         }
+        // if (nextId > lastIdx) {
+        //     this.props.history.push(`/pictures/${picId}`)
+        // }
+        // else{
+        //     this.props.history.push(`/pictures/${nextId}`);
+        // }
     }
 
 

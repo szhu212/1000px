@@ -104,7 +104,6 @@ __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
- // import {login, } from './Util/session_api_util'
 
 
 
@@ -1243,7 +1242,8 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PictureShow).call(this, props));
     _this.handlePrevClick = _this.handlePrevClick.bind(_assertThisInitialized(_this));
-    _this.handleNextClick = _this.handleNextClick.bind(_assertThisInitialized(_this)); // this.state = {
+    _this.handleNextClick = _this.handleNextClick.bind(_assertThisInitialized(_this));
+    _this.getKeyByValue = _this.getKeyByValue.bind(_assertThisInitialized(_this)); // this.state = {
     //     error: ""
     // };
 
@@ -1268,35 +1268,63 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "getKeyByValue",
+    value: function getKeyByValue(object, value) {
+      return Object.keys(object).find(function (key) {
+        return object[key] === value;
+      });
+    }
+  }, {
     key: "handlePrevClick",
     value: function handlePrevClick() {
-      var picId = this.props.pictureId;
-      var hashOfIds = this.props.hashOfIds;
-      var firstIdx = hashOfIds[0];
-      var prevId = parseInt(picId) - 1;
+      var picId = parseInt(this.props.pictureId);
+      var hashOfIds = this.props.hashOfIds; // const firstIdx = hashOfIds[0]
+      // let prevId = parseInt(picId) - 1
 
-      if (prevId < firstIdx) {
+      var picIdx = this.getKeyByValue(hashOfIds, picId);
+      var prevIdx = picIdx - 1;
+      var prevId = hashOfIds[prevIdx];
+
+      if (prevIdx < 0) {
         this.props.history.push("/pictures/".concat(picId));
         this.setState({
           error: "This is the first illustration."
         });
       } else {
         this.props.history.push("/pictures/".concat(prevId));
-      }
+      } // if (prevId < firstIdx) {
+      //     this.props.history.push(`/pictures/${picId}`)
+      //     this.setState({error:"This is the first illustration."})
+      // }
+      // else{
+      //     this.props.history.push(`/pictures/${prevId}`);
+      // }
+
     }
   }, {
     key: "handleNextClick",
     value: function handleNextClick() {
-      var picId = this.props.pictureId;
+      var picId = parseInt(this.props.pictureId);
       var hashOfIds = this.props.hashOfIds;
-      var lastIdx = hashOfIds[Object.values(hashOfIds).length - 1];
-      var nextId = parseInt(picId) + 1;
+      var picIdx = parseInt(this.getKeyByValue(hashOfIds, picId)); // const lastIdx = hashOfIds[Object.values(hashOfIds).length-1]
 
-      if (nextId > lastIdx) {
+      var lastIdx = Object.values(hashOfIds).length - 1; // debugger
+      // let nextId = parseInt(picId) + 1
+
+      var nextIdx = picIdx + 1;
+      var nextId = hashOfIds[nextIdx]; // debugger
+
+      if (nextIdx > lastIdx) {
         this.props.history.push("/pictures/".concat(picId));
       } else {
         this.props.history.push("/pictures/".concat(nextId));
-      }
+      } // if (nextId > lastIdx) {
+      //     this.props.history.push(`/pictures/${picId}`)
+      // }
+      // else{
+      //     this.props.history.push(`/pictures/${nextId}`);
+      // }
+
     }
   }, {
     key: "render",
