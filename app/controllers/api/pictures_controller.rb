@@ -11,6 +11,7 @@ class Api::PicturesController < ApplicationController
     end
 
     def create
+        # debugger
         @picture = Picture.new(pic_params)
         if @picture.save
             render :show
@@ -27,6 +28,6 @@ class Api::PicturesController < ApplicationController
     end
     
     def pic_params
-        params.require(:picture).permit(:title, :author_id, :description, :equipment_or_material)
+        params.require(:picture).permit(:title, :author_id, :description, :equipment_or_material, :picture)
     end
 end

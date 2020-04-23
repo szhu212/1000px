@@ -24,7 +24,12 @@
     object-fit: cover;
     min-width: 100%;
     max-width: 100%;
-    // width:100%;
     vertical-align: bottom;
+    border-radius: 3px;
+}
+
+.picture-img:hover {
+    transform: scale(1.05);
+    transition: all 0.1s ease-in-out;
 }
 

@@ -15,7 +15,7 @@ class NavBar extends React.Component {
         const { currentUser } = this.props
         const display = currentUser? (
                 <div className='upload-button'>   
-                   <button>Upload</button>
+                   <button><Link to="/upload">Upload</Link></button>
                 </div>
             ):
             (   

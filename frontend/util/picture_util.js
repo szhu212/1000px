@@ -18,10 +18,29 @@ export const fetchPicture = (picId) => {
     )
 }
 
-export const createPicture = (pic) => (
+export const createPicture = (formData) => {
+    // debugger
+    return (
     $.ajax({
-        method:"GET",
+        method:"POST",
         url:"/api/pictures",
-        data: {pic}
+        data: formData,
+        contentType: false,
+        processData: false
+        })
+)}
+
+export const updatePicture = (picture) => (
+    $.ajax({
+        method:"PATCH",
+        url:`/api/pictures/{pic.id}`,
+        data: {picture}
+        })
+)
+
+export const deletePicture = (picId) => (
+    $.ajax({
+        method:"DELETE",
+        url:`/api/pictures/${picId}`
         })
 )

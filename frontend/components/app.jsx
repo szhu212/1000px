@@ -8,6 +8,7 @@ import NotFoundForm from'./not_found_form';
 import HomepageContainer from'./homepage/homepage_container';
 import PictureShowContainer from '../components/picture/picture_show_container';
 import PictureDiscoverContainer from './picture/picture_descover_container';
+import CreatePictureFormContainer from './picture/create_picture_form_container';
 
 
 
@@ -22,6 +23,7 @@ const App = () => (
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <Route exact path="/" component={HomepageContainer} />
             <Route exact path="/discover" component={PictureDiscoverContainer} />
+            <Route exact path="/upload" component={CreatePictureFormContainer} />
             <Route path="/pictures/:pictureId" component={PictureShowContainer} />
             <Route path="*" component={NotFoundForm} />
         </Switch>

@@ -140,22 +140,27 @@ document.addEventListener("DOMContentLoaded", function () {
 /*!*********************************************!*\
   !*** ./frontend/actions/picture_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_PICTURES, RECEIVE_PICTURE, receivePictures, receivePicture, fetchPictures, fetchPicture, createPicture */
+/*! exports provided: RECEIVE_PICTURES, RECEIVE_PICTURE, REMOVE_PICTURE, receivePictures, receivePicture, removePicture, fetchPictures, fetchPicture, createPicture, updatePicture, deletePicture */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PICTURES", function() { return RECEIVE_PICTURES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PICTURE", function() { return RECEIVE_PICTURE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_PICTURE", function() { return REMOVE_PICTURE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePictures", function() { return receivePictures; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePicture", function() { return receivePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removePicture", function() { return removePicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPictures", function() { return fetchPictures; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPicture", function() { return fetchPicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPicture", function() { return createPicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePicture", function() { return updatePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePicture", function() { return deletePicture; });
 /* harmony import */ var _util_picture_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/picture_util */ "./frontend/util/picture_util.js");
 
 var RECEIVE_PICTURES = "RECEIVE_PICTURES";
 var RECEIVE_PICTURE = "RECEIVE_PICTURE";
+var REMOVE_PICTURE = "REMOVE_PICTURE";
 var receivePictures = function receivePictures(pictures) {
   // debugger
   return {
@@ -167,6 +172,12 @@ var receivePicture = function receivePicture(picture) {
   return {
     type: RECEIVE_PICTURE,
     picture: picture
+  };
+};
+var removePicture = function removePicture(pictureId) {
+  return {
+    type: REMOVE_PICTURE,
+    pictureId: pictureId
   };
 };
 var fetchPictures = function fetchPictures() {
@@ -186,7 +197,21 @@ var fetchPicture = function fetchPicture(picId) {
 var createPicture = function createPicture(formPic) {
   return function (dispatch) {
     return _util_picture_util__WEBPACK_IMPORTED_MODULE_0__["createPicture"](formPic).then(function (pic) {
+      return dispatch(receivePicture(pic));
+    });
+  };
+};
+var updatePicture = function updatePicture(formPic) {
+  return function (dispatch) {
+    return _util_picture_util__WEBPACK_IMPORTED_MODULE_0__["updatePicture"](formPic).then(function (pic) {
       return diapatch(receivePicture(pic));
+    });
+  };
+};
+var deletePicture = function deletePicture(picId) {
+  return function (dispatch) {
+    return _util_picture_util__WEBPACK_IMPORTED_MODULE_0__["deletePicture"](picId).then(function (pic) {
+      return diapatch(removePicture(pic));
     });
   };
 };
@@ -289,6 +314,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _homepage_homepage_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./homepage/homepage_container */ "./frontend/components/homepage/homepage_container.js");
 /* harmony import */ var _components_picture_picture_show_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/picture/picture_show_container */ "./frontend/components/picture/picture_show_container.js");
 /* harmony import */ var _picture_picture_descover_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./picture/picture_descover_container */ "./frontend/components/picture/picture_descover_container.js");
+/* harmony import */ var _picture_create_picture_form_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./picture/create_picture_form_container */ "./frontend/components/picture/create_picture_form_container.js");
+
 
 
 
@@ -317,6 +344,10 @@ var App = function App() {
     exact: true,
     path: "/discover",
     component: _picture_picture_descover_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+    exact: true,
+    path: "/upload",
+    component: _picture_create_picture_form_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/pictures/:pictureId",
     component: _components_picture_picture_show_container__WEBPACK_IMPORTED_MODULE_8__["default"]
@@ -808,7 +839,9 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
       var currentUser = this.props.currentUser;
       var display = currentUser ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "upload-button"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Upload")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/upload"
+      }, "Upload"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "non-circled-button"
@@ -928,6 +961,161 @@ var NotFoundForm = function NotFoundForm(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NotFoundForm);
+
+/***/ }),
+
+/***/ "./frontend/components/picture/create_picture_form.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/picture/create_picture_form.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var createPicture = /*#__PURE__*/function (_React$Component) {
+  _inherits(createPicture, _React$Component);
+
+  function createPicture(props) {
+    var _this;
+
+    _classCallCheck(this, createPicture);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(createPicture).call(this, props));
+    _this.state = _this.props.picture;
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(createPicture, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      // debugger
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append('picture[title]', this.state.title);
+      formData.append('picture[description]', this.state.description);
+      formData.append('picture[equipment_or_material]', this.state.equipment_or_material);
+      formData.append('picture[author_id]', this.state.author_id);
+      formData.append('picture[picture]', this.state.pictureFile);
+      this.props.createPicture(formData); // const pic = Object.assign({}, this.state);
+      // this.props.createPicture(pic);
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      debugger;
+      this.setState({
+        pictureFile: e.currentTarget.files[0]
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-picture-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Title:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.title,
+        onChange: this.handleChange('title')
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Tell us more about your illustration:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        value: this.state.description,
+        onChange: this.handleChange('description')
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "What material or equipments did you use to create your illustration?:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        value: this.state.equipment_or_material,
+        onChange: this.handleChange('equipment_or_material')
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        onChange: this.handleFile
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "Submit"
+      })));
+    }
+  }]);
+
+  return createPicture;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (createPicture);
+
+/***/ }),
+
+/***/ "./frontend/components/picture/create_picture_form_container.js":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/picture/create_picture_form_container.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _create_picture_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create_picture_form */ "./frontend/components/picture/create_picture_form.jsx");
+/* harmony import */ var _actions_picture_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/picture_actions */ "./frontend/actions/picture_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  // debugger
+  return {
+    currentUser: state.entities.users[state.session.id],
+    picture: {
+      title: "",
+      description: "",
+      equipment_or_material: "",
+      author_id: state.session.id,
+      picture: null
+    }
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createPicture: function createPicture(picture) {
+      return dispatch(Object(_actions_picture_actions__WEBPACK_IMPORTED_MODULE_2__["createPicture"])(picture));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_create_picture_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -1549,6 +1737,11 @@ var pictureReducer = function pictureReducer() {
     case _actions_picture_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PICTURE"]:
       return Object.assign({}, state, _defineProperty({}, action.picture.id, action.picture));
 
+    case _actions_picture_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PICTURE"]:
+      var nextState = Object.assign({}, state);
+      delete nextState[action.pictureId];
+      return nextState;
+
     default:
       return state;
   }
@@ -1710,7 +1903,7 @@ var configureStore = function configureStore() {
 /*!***************************************!*\
   !*** ./frontend/util/picture_util.js ***!
   \***************************************/
-/*! exports provided: fetchPictures, fetchPicture, createPicture */
+/*! exports provided: fetchPictures, fetchPicture, createPicture, updatePicture, deletePicture */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1718,6 +1911,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPictures", function() { return fetchPictures; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPicture", function() { return fetchPicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPicture", function() { return createPicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePicture", function() { return updatePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePicture", function() { return deletePicture; });
 var fetchPictures = function fetchPictures() {
   // debugger
   return $.ajax({
@@ -1731,13 +1926,29 @@ var fetchPicture = function fetchPicture(picId) {
     url: "/api/pictures/".concat(picId)
   });
 };
-var createPicture = function createPicture(pic) {
+var createPicture = function createPicture(formData) {
+  // debugger
   return $.ajax({
-    method: "GET",
+    method: "POST",
     url: "/api/pictures",
+    data: formData,
+    contentType: false,
+    processData: false
+  });
+};
+var updatePicture = function updatePicture(picture) {
+  return $.ajax({
+    method: "PATCH",
+    url: "/api/pictures/{pic.id}",
     data: {
-      pic: pic
+      picture: picture
     }
+  });
+};
+var deletePicture = function deletePicture(picId) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/pictures/".concat(picId)
   });
 };
 
