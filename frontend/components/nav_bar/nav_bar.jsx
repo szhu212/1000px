@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+
 
 class NavBar extends React.Component {
     constructor(props){
@@ -15,7 +16,7 @@ class NavBar extends React.Component {
         const { currentUser } = this.props
         const display = currentUser? (
                 <div className='upload-button'>   
-                   <button><Link to="/upload">Upload</Link></button>
+                   <button onClick={() => this.props.openModal('createPicture')}>Upload</button>
                 </div>
             ):
             (   

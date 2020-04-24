@@ -12,13 +12,17 @@ class Api::PicturesController < ApplicationController
 
     def create
         # debugger
-        @picture = Picture.new(pic_params)
-        if @picture.save
-            render :show
-        else
-            render json: @picture.errors.full_messages, status: 422
-        end 
-       
+        # if params[:picture][:picture] == 'undefined'
+        #     flash[:errors] = ['Please select an image to upload']
+        #     # render json: {message:'Please select an image to upload'}
+        # else
+            @picture = Picture.new(pic_params)
+            if @picture.save
+                render :show
+            else
+                render json: @picture.errors.full_messages, status: 422
+            end 
+        # end
     end
     
     def destroy 

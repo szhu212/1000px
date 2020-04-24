@@ -1,7 +1,10 @@
 import * as PictureUtil from '../util/picture_util';
-export const RECEIVE_PICTURES = "RECEIVE_PICTURES"
-export const RECEIVE_PICTURE = "RECEIVE_PICTURE"
-export const REMOVE_PICTURE = "REMOVE_PICTURE"
+
+export const RECEIVE_PICTURES = "RECEIVE_PICTURES";
+export const RECEIVE_PICTURE = "RECEIVE_PICTURE";
+export const REMOVE_PICTURE = "REMOVE_PICTURE";
+export const RECEIVE_PICTURE_ERRORS = 'RECEIVE_PICTURE_ERRORS'; 
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const receivePictures = (pictures) => {
     // debugger
@@ -21,6 +24,17 @@ export const removePicture = (pictureId) => ({
     pictureId
 })
 
+export const receivePictureErrors = (errors) => {
+    // debugger
+    return{
+        type: RECEIVE_PICTURE_ERRORS,
+        errors
+    }
+}
+
+export const clearErrors = () => ({
+    type: CLEAR_ERRORS
+})
 
 export const fetchPictures = () => dispatch => (
     PictureUtil.fetchPictures()
@@ -34,16 +48,19 @@ export const fetchPicture = picId => dispatch => (
 
 export const createPicture = (formPic) => dispatch => (
     PictureUtil.createPicture(formPic)
-    .then(pic => dispatch(receivePicture(pic))) 
+    .then(pic => dispatch(receivePicture(pic)),
+    err => (
+        dispatch(receivePictureErrors(err.responseJSON))
+      )) 
 )
 
 export const updatePicture = (formPic) => dispatch => (
     PictureUtil.updatePicture(formPic)
-    .then(pic => diapatch(receivePicture(pic))) 
+    .then(pic => dispatch(receivePicture(pic))) 
 )
 
 export const deletePicture = (picId) => dispatch => (
     PictureUtil.deletePicture(picId)
-    .then(pic => diapatch(removePicture(pic))) 
+    .then(pic => dispatch(removePicture(pic))) 
 )
 

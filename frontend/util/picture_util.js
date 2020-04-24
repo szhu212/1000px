@@ -28,6 +28,12 @@ export const createPicture = (formData) => {
         contentType: false,
         processData: false
         })
+        // .then(
+        //     (response) => console.log(response.picture),
+        //     (response) => {
+        //       console.log(response.responseJSON)
+        //     }
+        //   )
 )}
 
 export const updatePicture = (picture) => (
