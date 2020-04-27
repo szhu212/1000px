@@ -30,9 +30,10 @@ class createPicture extends React.Component {
             this.props.createPicture(formData)
                 .then( () => this.props.history
                 .push(`/discover`));
+                // debugger
+                this.props.closeModal()
         }
             
-        // this.props.closeModal()
   
     }
 

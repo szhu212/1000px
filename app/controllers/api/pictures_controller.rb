@@ -11,18 +11,12 @@ class Api::PicturesController < ApplicationController
     end
 
     def create
-        # debugger
-        # if params[:picture][:picture] == 'undefined'
-        #     flash[:errors] = ['Please select an image to upload']
-        #     # render json: {message:'Please select an image to upload'}
-        # else
             @picture = Picture.new(pic_params)
             if @picture.save
                 render :show
             else
                 render json: @picture.errors.full_messages, status: 422
             end 
-        # end
     end
     
     def destroy 
@@ -30,6 +24,14 @@ class Api::PicturesController < ApplicationController
         @picture.destroy
         rebder :show
     end
+
+    def user_picrure_index
+        @pictures = Picture.where(author_id:params[:user_id])
+
+
+    end
+
+    private
     
     def pic_params
         params.require(:picture).permit(:title, :author_id, :description, :equipment_or_material, :picture)

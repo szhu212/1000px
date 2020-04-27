@@ -1164,9 +1164,10 @@ var createPicture = /*#__PURE__*/function (_React$Component) {
         formData.append('picture[picture]', this.state.pictureFile);
         this.props.createPicture(formData).then(function () {
           return _this2.props.history.push("/discover");
-        });
-      } // this.props.closeModal()
+        }); // debugger
 
+        this.props.closeModal();
+      }
     }
   }, {
     key: "handleChange",
