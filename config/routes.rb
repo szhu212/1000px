@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :show] do
-      get '/userpictureindex', to: 'pictures#user_picrure_index'
+      get '/userpictures', to: 'pictures#user_picrure_index'
     end
     resource :session, only: [:destroy, :create]
     resources :pictures, only: [:show, :index, :create, :destroy]

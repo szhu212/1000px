@@ -169,7 +169,7 @@ var closeModal = function closeModal() {
 /*!*********************************************!*\
   !*** ./frontend/actions/picture_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_PICTURES, RECEIVE_PICTURE, REMOVE_PICTURE, RECEIVE_PICTURE_ERRORS, CLEAR_ERRORS, receivePictures, receivePicture, removePicture, receivePictureErrors, clearErrors, fetchPictures, fetchPicture, createPicture, updatePicture, deletePicture */
+/*! exports provided: RECEIVE_PICTURES, RECEIVE_PICTURE, REMOVE_PICTURE, RECEIVE_PICTURE_ERRORS, CLEAR_ERRORS, RECEIVE_USER_PICTURES, receivePictures, receivePicture, removePicture, receivePictureErrors, clearErrors, receiveUserPictures, fetchPictures, fetchPicture, createPicture, updatePicture, deletePicture, fetchUserPictures */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -179,16 +179,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_PICTURE", function() { return REMOVE_PICTURE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PICTURE_ERRORS", function() { return RECEIVE_PICTURE_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_PICTURES", function() { return RECEIVE_USER_PICTURES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePictures", function() { return receivePictures; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePicture", function() { return receivePicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removePicture", function() { return removePicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePictureErrors", function() { return receivePictureErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUserPictures", function() { return receiveUserPictures; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPictures", function() { return fetchPictures; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPicture", function() { return fetchPicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPicture", function() { return createPicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePicture", function() { return updatePicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePicture", function() { return deletePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserPictures", function() { return fetchUserPictures; });
 /* harmony import */ var _util_picture_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/picture_util */ "./frontend/util/picture_util.js");
 
 var RECEIVE_PICTURES = "RECEIVE_PICTURES";
@@ -196,6 +199,7 @@ var RECEIVE_PICTURE = "RECEIVE_PICTURE";
 var REMOVE_PICTURE = "REMOVE_PICTURE";
 var RECEIVE_PICTURE_ERRORS = 'RECEIVE_PICTURE_ERRORS';
 var CLEAR_ERRORS = 'CLEAR_ERRORS';
+var RECEIVE_USER_PICTURES = "RECEIVE_USER_PICTURES";
 var receivePictures = function receivePictures(pictures) {
   // debugger
   return {
@@ -225,6 +229,12 @@ var receivePictureErrors = function receivePictureErrors(errors) {
 var clearErrors = function clearErrors() {
   return {
     type: CLEAR_ERRORS
+  };
+};
+var receiveUserPictures = function receiveUserPictures(userid) {
+  return {
+    type: RECEIVE_USER_PICTURES,
+    userPictures: userPictures
   };
 };
 var fetchPictures = function fetchPictures() {
@@ -261,6 +271,13 @@ var deletePicture = function deletePicture(picId) {
   return function (dispatch) {
     return _util_picture_util__WEBPACK_IMPORTED_MODULE_0__["deletePicture"](picId).then(function (pic) {
       return dispatch(removePicture(pic));
+    });
+  };
+};
+var fetchUserPictures = function fetchUserPictures(userId) {
+  return function (dispatch) {
+    _util_picture_util__WEBPACK_IMPORTED_MODULE_0__["fetchUserPictures"](userId).then(function (pictures) {
+      return dispatch(receivePictures(pictures));
     });
   };
 };
@@ -343,6 +360,48 @@ var signupUser = function signupUser(formUser) {
 
 /***/ }),
 
+/***/ "./frontend/actions/user_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/user_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_USER, RECEIVE_ERRORS, receiveUser, receiveErrors, fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ERRORS", function() { return RECEIVE_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony import */ var _util_user_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_utils */ "./frontend/util/user_utils.js");
+
+var RECEIVE_USER = "RECEIVE_USER";
+var RECEIVE_ERRORS = 'RECEIVE_ERRORS';
+var receiveUser = function receiveUser(user) {
+  return {
+    type: RECEIVE_USER,
+    user: user
+  };
+};
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_ERRORS,
+    errors: errors
+  };
+};
+var fetchUser = function fetchUser(userId) {
+  return function (dispatch) {
+    return _util_user_utils__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userId).then(function (user) {
+      dispatch(receiveUser(user));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -364,6 +423,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _homepage_homepage_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./homepage/homepage_container */ "./frontend/components/homepage/homepage_container.js");
 /* harmony import */ var _components_picture_picture_show_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/picture/picture_show_container */ "./frontend/components/picture/picture_show_container.js");
 /* harmony import */ var _picture_picture_descover_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./picture/picture_descover_container */ "./frontend/components/picture/picture_descover_container.js");
+/* harmony import */ var _profile_user_profile_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./profile/user_profile_container */ "./frontend/components/profile/user_profile_container.js");
+
 
 
 
@@ -396,6 +457,9 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/pictures/:pictureId",
     component: _components_picture_picture_show_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+    path: "/users/:userId",
+    component: _profile_user_profile_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "*",
     component: _not_found_form__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -1833,6 +1897,116 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/user_profile.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/profile/user_profile.jsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var UserProfile = /*#__PURE__*/function (_React$Component) {
+  _inherits(UserProfile, _React$Component);
+
+  function UserProfile(props) {
+    _classCallCheck(this, UserProfile);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(UserProfile).call(this, props));
+  }
+
+  _createClass(UserProfile, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // debugger
+      if (this.props.userId) {
+        this.props.fetchUser(this.props.userId);
+      } // debugger
+
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      var username = this.props.username ? this.props.username : null;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Profile"), username);
+    }
+  }]);
+
+  return UserProfile;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (UserProfile);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/user_profile_container.js":
+/*!***************************************************************!*\
+  !*** ./frontend/components/profile/user_profile_container.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _user_profile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user_profile */ "./frontend/components/profile/user_profile.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _actions_picture_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/picture_actions */ "./frontend/actions/picture_actions.js");
+
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  // debugger
+  var userId = parseInt(ownProps.match.params.userId);
+  var username = state.entities.users[userId] ? state.entities.users[userId].username : null;
+  return {
+    userId: userId,
+    username: username
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchUser: function fetchUser(userId) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(userId));
+    },
+    fetchUserPictures: function fetchUserPictures(userId) {
+      return dispatch(Object(_actions_picture_actions__WEBPACK_IMPORTED_MODULE_4__["fetchUserPictures"])(userId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_user_profile__WEBPACK_IMPORTED_MODULE_1__["default"])));
+
+/***/ }),
+
 /***/ "./frontend/components/root.jsx":
 /*!**************************************!*\
   !*** ./frontend/components/root.jsx ***!
@@ -1998,6 +2172,9 @@ var pictureReducer = function pictureReducer() {
     case _actions_picture_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PICTURE"]:
       return Object.assign({}, state, _defineProperty({}, action.picture.id, action.picture));
 
+    case _actions_picture_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER_PICTURES"]:
+      return Object.assign({}, state, action.userPictures);
+
     case _actions_picture_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PICTURE"]:
       var nextState = Object.assign({}, state);
       delete nextState[action.pictureId];
@@ -2135,17 +2312,23 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  debugger;
   Object.freeze(state);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return Object.assign({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
+      return Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
 
     default:
       return state;
@@ -2186,7 +2369,7 @@ var configureStore = function configureStore() {
 /*!***************************************!*\
   !*** ./frontend/util/picture_util.js ***!
   \***************************************/
-/*! exports provided: fetchPictures, fetchPicture, createPicture, updatePicture, deletePicture */
+/*! exports provided: fetchPictures, fetchPicture, createPicture, updatePicture, deletePicture, fetchUserPictures */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2196,6 +2379,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPicture", function() { return createPicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePicture", function() { return updatePicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePicture", function() { return deletePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserPictures", function() { return fetchUserPictures; });
 var fetchPictures = function fetchPictures() {
   // debugger
   return $.ajax({
@@ -2217,13 +2401,7 @@ var createPicture = function createPicture(formData) {
     data: formData,
     contentType: false,
     processData: false
-  }) // .then(
-  //     (response) => console.log(response.picture),
-  //     (response) => {
-  //       console.log(response.responseJSON)
-  //     }
-  //   )
-  ;
+  });
 };
 var updatePicture = function updatePicture(picture) {
   return $.ajax({
@@ -2238,6 +2416,12 @@ var deletePicture = function deletePicture(picId) {
   return $.ajax({
     method: "DELETE",
     url: "/api/pictures/".concat(picId)
+  });
+};
+var fetchUserPictures = function fetchUserPictures(userId) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/users/".concat(userId, "/userpictures")
   });
 };
 
@@ -2339,6 +2523,25 @@ var logout = function logout() {
   return $.ajax({
     method: "DELETE",
     url: "/api/session"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/user_utils.js":
+/*!*************************************!*\
+  !*** ./frontend/util/user_utils.js ***!
+  \*************************************/
+/*! exports provided: fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+var fetchUser = function fetchUser(userId) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/users/".concat(userId)
   });
 };
 

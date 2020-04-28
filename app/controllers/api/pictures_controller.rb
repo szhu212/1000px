@@ -27,8 +27,7 @@ class Api::PicturesController < ApplicationController
 
     def user_picrure_index
         @pictures = Picture.where(author_id:params[:user_id])
-
-
+        render :user_picrure_index
     end
 
     private

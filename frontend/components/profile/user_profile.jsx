@@ -6,8 +6,24 @@ class UserProfile extends React.Component {
         super(props);
     }
     
+    componentDidMount() {
+        // debugger
+        if (this.props.userId) {
+            this.props.fetchUser(this.props.userId)
+        }
+        // debugger
+    }
+
     render() {
-        <h1>Profile</h1>
+        debugger
+        const username = this.props.username ? this.props.username : null
+        return(
+            <div>
+                <h1>Profile</h1>
+                {username}
+        
+            </div>
+        )
     }
 }
 

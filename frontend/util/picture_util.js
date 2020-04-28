@@ -9,7 +9,6 @@ export const fetchPictures = () => {
 }
 
 export const fetchPicture = (picId) => {
-
     return (
     $.ajax({
     method:"GET",
@@ -28,12 +27,6 @@ export const createPicture = (formData) => {
         contentType: false,
         processData: false
         })
-        // .then(
-        //     (response) => console.log(response.picture),
-        //     (response) => {
-        //       console.log(response.responseJSON)
-        //     }
-        //   )
 )}
 
 export const updatePicture = (picture) => (
@@ -50,3 +43,12 @@ export const deletePicture = (picId) => (
         url:`/api/pictures/${picId}`
         })
 )
+
+export const fetchUserPictures =(userId) => {
+    return (
+        $.ajax({
+            method:"GET",
+            url:`/api/users/${userId}/userpictures`
+            })
+    )
+}

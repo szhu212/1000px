@@ -9,7 +9,7 @@ import NotFoundForm from'./not_found_form';
 import HomepageContainer from'./homepage/homepage_container';
 import PictureShowContainer from '../components/picture/picture_show_container';
 import PictureDiscoverContainer from './picture/picture_descover_container';
-
+import UserProfileContainer from './profile/user_profile_container';
 
 
 const App = () => (
@@ -25,6 +25,7 @@ const App = () => (
             <Route exact path="/" component={HomepageContainer} />
             <Route exact path="/discover" component={PictureDiscoverContainer} />
             <Route path="/pictures/:pictureId" component={PictureShowContainer} />
+            <Route path="/users/:userId" component={UserProfileContainer} />
             <Route path="*" component={NotFoundForm} />
         </Switch>
 
