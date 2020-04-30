@@ -25,12 +25,13 @@ class NavBar extends React.Component {
                      <li className="circled-button"><Link to="/signup">Sign Up</Link></li>
                 </div>
             ) 
-
+        // debugger
+        const userButtonPicURL = currentUser && currentUser.avatarUrl ? currentUser.avatarUrl : window.userpicURL
         const userButton = currentUser? (
             <div className="dropdown-container">
-                 <img className="dropdown-trigger" src={window.userpicURL}/>
+                 <img className="dropdown-trigger" src={userButtonPicURL}/>
                  <div className="dropdown-list">
-                     <p>Profile</p>
+                     <p><Link to={`/users/${currentUser.id}`}>Profile</Link></p>
                      <p onClick={()=>this.handleLogout()}>Log out</p>
                  </div>
              </div>

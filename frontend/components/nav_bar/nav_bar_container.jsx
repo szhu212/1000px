@@ -5,10 +5,10 @@ import { openModal } from "../../actions/modal_actions"
 
 const mapStateToProps = (state) => {
     // debugger
-    return ({
+    return {
         currentUser: state.entities.users[state.session.id],
         // errors: state.errors.picture_errors,
-    })
+    }
 }
 
 const mapDispatchToProps = (dispatch) => ({

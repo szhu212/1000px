@@ -2,6 +2,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import CreatePictureContainer from '../picture/create_picture_form_container'
+import UploadAvatarContainer from '../profile/upload_avatar_container';
 
 function Modal({modal, closeModal}) {
     if (!modal) {
@@ -11,6 +12,9 @@ function Modal({modal, closeModal}) {
     switch (modal) {
       case 'createPicture':
         component = <CreatePictureContainer />;
+        break;
+      case 'uploadAvatar':
+        component = <UploadAvatarContainer />;
         break;
       default:
         return null;

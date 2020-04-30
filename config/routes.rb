@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :show] do
       get '/userpictures', to: 'pictures#user_picrure_index'
+      resources :avatars, only: [:create, :update, :destroy]
     end
     resource :session, only: [:destroy, :create]
     resources :pictures, only: [:show, :index, :create, :destroy]

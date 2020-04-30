@@ -24,8 +24,8 @@ class PictureIndex extends React.Component  {
                     ))}
                 
             </div>
-        ) 
-        : (null)
+            ) 
+            : (null)
         return (
             <div className="picture-index-container">
                 {display}

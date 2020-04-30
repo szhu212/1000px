@@ -27,6 +27,7 @@ class createPicture extends React.Component {
             formData.append('picture[equipment_or_material]', this.state.equipment_or_material)
             formData.append('picture[author_id]', this.state.author_id)
             formData.append('picture[picture]', this.state.pictureFile)
+            debugger
             this.props.createPicture(formData)
                 .then( () => this.props.history
                 .push(`/discover`));
@@ -43,12 +44,13 @@ class createPicture extends React.Component {
     }
 
     handleFile(e){
-        // debugger
         const file =  e.currentTarget.files[0];
+        debugger
         const fileReader = new FileReader();
         fileReader.onloadend = () => {
             this.setState({pictureFile: file, photoUrl: fileReader.result});
         }
+        debugger
         if(file){
             fileReader.readAsDataURL(file);
         }
@@ -77,26 +79,28 @@ class createPicture extends React.Component {
                 </div>
                 <form className="create-picture-form" onSubmit={this.handleSubmit}>
                     <label>Title
-                        <input type="text" value={this.state.title} onChange={this.handleChange('title')}/>
+                        <input type="text" value={this.state.title} onChange={this.handleChange('title')} required/>
                     </label>
                     <label>Description
                         <textarea 
                         value={this.state.description} 
                         onChange={this.handleChange('description')}
-                        placeholder="Tell us more about your illustration"></textarea>
+                        placeholder="Tell us more about your illustration" required></textarea>
                     </label>
                     <label>Material or Equipments
                         <input type="text" 
                         value={this.state.equipment_or_material} 
                         onChange={this.handleChange('equipment_or_material')}
-                        placeholder="What art supplies or equipments did you use?"/>
+                        placeholder="What art supplies or equipments did you use?"
+                        required/>
                     </label>
                     <label className="custom-file-upload"> Choose Image
                         <input type="file" 
                         onChange={this.handleFile}/>
                     </label>
                     {preview}
-                    <input type="submit" value="Upload Image" className="upload-img-button"/>
+                    <input type="submit" value="Upload Image" className="upload-img-button"
+                    required/>
                 </form>
              </div>
         )

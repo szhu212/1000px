@@ -20,11 +20,16 @@ user[6] = User.create!(username:"Chris Green", email:"cg@gmail.com", password:"s
 user[7] = User.create!(username:"Jane Brown", email:"jane@gmail.com", password:"sefsweref19")
 user[8] = User.create!(username:"Egon", email:"ee@gmail.com", password:"wrfertg")
 
+user.keys.each do |n|
+    file = open("https://100illusts-dev.s3-us-west-1.amazonaws.com/20#{n}.png")
+    user[n].avatar.attach(io: file, filename: "20#{n}.png")
+end
+
 Picture.destroy_all
 
 p = Hash.new()
 p[0] = Picture.create!(title:"Attach on Titan - Levi", description:"Digital painting of Levi from Attach on Titan", author_id:user[0].id, equipment_or_material:"Wacom Intuo 4 Tablet", editors_choice:"true")
-p[1] = Picture.create!(title:"Cat sketch", description:"Like a little fur call <3",author_id:user[2].id, equipment_or_material:"Watercolor", editors_choice:"false")
+p[1] = Picture.create!(title:"Cat sketch", description:"Like a little fur call <3",author_id:user[1].id, equipment_or_material:"Watercolor", editors_choice:"false")
 p[2] = Picture.create!(title:"Winter Sakura", description:"Let him only see the thorns who has eyes to see the rose.",author_id:user[5].id, equipment_or_material:"Watercolor", editors_choice:"false")
 p[3] = Picture.create!(title:"Girl figure", description:"Poster for a dear friend's new book.",author_id:user[4].id, equipment_or_material:"Watercolor", editors_choice:"false")
 p[4] = Picture.create!(title:"City", description:"Clouds come floating into my life, no longer to carry rain or usher storm, but to add color to my sunset sky.",author_id:user[5].id, equipment_or_material:"Oil paiting", editors_choice:"true")
@@ -35,7 +40,7 @@ p[8] = Picture.create!(title:"Rabbits in coffee cup", description:"Poster for Am
 p[9] = Picture.create!(title:"Sakura", description:"Sakura blossom",author_id:user[6].id, equipment_or_material:"Oil painting", editors_choice:"true")
 p[10] = Picture.create!(title:"Gemstones", description:"You are worth more than the emeralds that people compare your eyes to.",author_id:user[2].id, equipment_or_material:"Wacom Tablet", editors_choice:"true")
 p[11] = Picture.create!(title:"Sword", description:"Clouds come floating into my life, no longer to carry rain or usher storm, but to add color to my sunset sky.",author_id:user[3].id, equipment_or_material:"Wacom Tablet", editors_choice:"true")
-p[12] = Picture.create!(title:"Fur balls", description:"Cat sketch <3<3<3",author_id:user[2].id, equipment_or_material:"color pencil", editors_choice:"true")
+p[12] = Picture.create!(title:"Fur balls", description:"Cat sketch <3<3<3",author_id:user[1].id, equipment_or_material:"color pencil", editors_choice:"true")
 p[13] = Picture.create!(title:"Ocean sunset", description:"Clouds come floating into my life, no longer to carry rain or usher storm, but to add color to my sunset sky.",author_id:user[5].id, equipment_or_material:"Oil painting", editors_choice:"true")
 p[14] = Picture.create!(title:"watercolor", description:"Let me think that there is one among those stars that guides my life through the dark unknown.",author_id:user[6].id, equipment_or_material:"Oil painting", editors_choice:"true")
 p[15] = Picture.create!(title:"Fur ball", description:"Lovely little bird",author_id:user[5].id, equipment_or_material:"color pencil", editors_choice:"false")
@@ -74,9 +79,6 @@ p[47] = Picture.create!(title:"Man in the sky", description:"Poster for a dear f
 p[48] = Picture.create!(title:"Flying in sunset", description:"Have you ever imagined flying in the sky like this?",author_id:user[6].id, equipment_or_material:"Oil painting", editors_choice:"true")
 p[49] = Picture.create!(title:"Alice in the wonderland", description:"Painting characters from my favourite fairy tale.",author_id:user[7].id, equipment_or_material:"Wacom Tablet", editors_choice:"true")
 p[50] = Picture.create!(title:"Fairies", description:"Illustration for a dear friend's new book.",author_id:user[8].id, equipment_or_material:"Wacom Intuos Tablet", editors_choice:"true")
-
-
-
 
 p.keys.each do |n|
     file = open("https://100illusts-dev.s3-us-west-1.amazonaws.com/#{n}.jpg")
