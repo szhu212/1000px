@@ -6,7 +6,7 @@ import { fetchUserPictures } from '../../actions/picture_actions';
 import { openModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    // debugger
+    debugger
     let userId = parseInt(ownProps.match.params.userId);
     let username = state.entities.users[userId] ? state.entities.users[userId].username : null;
     let userPictures = Object.values(state.entities.pictures).length > 0 ? Object.values(state.entities.pictures) : null

@@ -2176,11 +2176,20 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
 
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      debugger;
+
+      if (prevProps.avatarUrl !== this.props.avatarUrl) {
+        this.props.fetchUser(prevProps.userId);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
 
-      // debugger
+      debugger;
       var username = this.props.username ? this.props.username : null;
       var pictures = this.props.userPictures ? this.props.userPictures : null;
       var display = pictures && Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2236,7 +2245,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger
+  debugger;
   var userId = parseInt(ownProps.match.params.userId);
   var username = state.entities.users[userId] ? state.entities.users[userId].username : null;
   var userPictures = Object.values(state.entities.pictures).length > 0 ? Object.values(state.entities.pictures) : null;

@@ -17,8 +17,15 @@ class UserProfile extends React.Component {
         // debugger
     }
 
+    componentDidUpdate(prevProps) {
+        debugger
+        if (prevProps.avatarUrl !== this.props.avatarUrl){
+            this.props.fetchUser(prevProps.userId)
+        }
+    }
+
     render() {
-        // debugger
+        debugger
         const username = this.props.username ? this.props.username : null
         const pictures = this.props.userPictures ? this.props.userPictures : null
         const display = (pictures && Object.keys(pictures).length > 0)? (
