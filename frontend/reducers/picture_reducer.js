@@ -16,7 +16,7 @@ const pictureReducer = (state = {}, action) => {
             let nextState = Object.assign({}, state);
             delete nextState[action.pictureId]
             return nextState;
-        default:
+        default:  
             return state;
     }
 }

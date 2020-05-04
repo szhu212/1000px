@@ -7,6 +7,7 @@ export const RECEIVE_PICTURE_ERRORS = 'RECEIVE_PICTURE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const RECEIVE_USER_PICTURES = "RECEIVE_USER_PICTURES"
 
+
 export const receivePictures = (pictures) => {
     // debugger
     return{
@@ -42,6 +43,7 @@ export const receiveUserPictures = (userid) => ({
     userPictures
 })
 
+
 export const fetchPictures = () => dispatch => (
     PictureUtil.fetchPictures()
     .then(pictures => dispatch(receivePictures(pictures)))
@@ -74,4 +76,6 @@ export const fetchUserPictures = (userId) => dispatch => {
     PictureUtil.fetchUserPictures(userId)
     .then(pictures => dispatch(receivePictures(pictures)))
 }
+
+
 

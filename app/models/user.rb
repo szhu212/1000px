@@ -8,8 +8,16 @@ class User < ApplicationRecord
         attr_reader :password
 
         has_many :pictures,
-        foreign_key: :author_id,
-        class_name: :Picture
+            foreign_key: :author_id,
+            class_name: :Picture
+
+        has_many :likes,
+            foreign_key: :liker_id,
+            class_name: :Like
+
+        has_many :liked_pictures,
+            through: :likes,
+            source: :picture
 
         has_one_attached :avatar
     
