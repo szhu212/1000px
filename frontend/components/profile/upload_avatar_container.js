@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import uploadAvatarForm from './upload_avatar_form';
-import { fetchUser, createAvatar, updateAvatar } from '../../actions/user_actions';
+import { fetchUser, createAvatar } from '../../actions/user_actions';
 import { withRouter } from 'react-router';
 import { openModal, closeModal } from '../../actions/modal_actions';
 
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchUser: (userId) => dispatch(fetchUser(userId)),
         createAvatar: (avatar) => dispatch(createAvatar(avatar)),
-        updateAvatar: (avatar) => dispatch(updateAvatar(avatar)),
+        // updateAvatar: (avatar) => dispatch(updateAvatar(avatar)),
         openModal: (modal) => dispatch(openModal(modal)),
         closeModal:(modal) => dispatch(closeModal(modal))
     }

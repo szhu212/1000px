@@ -12,3 +12,4 @@ export const unlikePicture = pictureId => {
         url: `/api/likes/${pictureId}`
       });
 }
+

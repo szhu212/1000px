@@ -1,4 +1,9 @@
 class Api::LikesController < ApplicationController
+   
+    def index
+        @like = Like.where(picture_id: params[:like][:picture_id])
+        render :index
+    end
 
     def create
         @like = Like.new(like_params)
@@ -7,6 +12,7 @@ class Api::LikesController < ApplicationController
             render json: @like
         else
             render json: @like.errors.full_messages, status: 422
+        end
     end
 
     def destroy 

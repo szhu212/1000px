@@ -1,6 +1,6 @@
 class Like < ApplicationRecord
 
-    validates :photo_id, :liker_id, presence: true
+    validates :picture_id, :liker_id, presence: true
 
     belongs_to :picture,
         foreign_key: :picture_id,

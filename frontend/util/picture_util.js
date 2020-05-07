@@ -9,6 +9,7 @@ export const fetchPictures = () => {
 }
 
 export const fetchPicture = (picId) => {
+    // debugger
     return (
     $.ajax({
     method:"GET",

@@ -28,13 +28,13 @@
     font-weight: bold;
 }
 
-.lower-box {
-    width:90%;
+.text-box {
+    width:80%;
+    margin: 0 auto;
 }
 
 .text-holder {
     margin-top: 30px;
-
     display: flex;
     flex-direction: column;
     margin-left: 20px;
@@ -104,4 +104,52 @@
 
 .equip-and-editor-box {
     margin-bottom: 20px;
+}
+
+.like-container {
+    width: 32px;
+    height: 32px;
+    display: inline;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.like-container:hover {
+    cursor: pointer;
+   
+}
+
+.like-container .liked-icon {
+    width: 30px;
+    height: 30px;
+    color: rgb(248, 105, 62);
+    // background-color: red;
+}
+
+.like-container .not-liked-icon {
+    width: 30px;
+    height: 30px;
+    color: grey;
+    // background-color: red;
+}
+
+.like-container .not-liked-icon:hover {
+    width: 30px;
+    height: 30px;
+    color: rgb(248, 105, 62);
+    // background-color: red;
+}
+
+.far ,.fa-heart{
+    width: 30px;
+    height: 30px;
+    color: red;
+    // background-color: red;
+}
+
+.num-likes {
+    margin-left: 16px;
+    // text-align: center;
+    // padding: 5px;
 }

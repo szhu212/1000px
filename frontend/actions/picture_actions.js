@@ -51,7 +51,7 @@ export const fetchPictures = () => dispatch => (
 
 export const fetchPicture = picId => dispatch => (
     PictureUtil.fetchPicture(picId)
-    .then(pictures => dispatch(receivePicture(pictures)))
+    .then(picture => dispatch(receivePicture(picture)))
 )
 
 export const createPicture = (formPic) => dispatch => (

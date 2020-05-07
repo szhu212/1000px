@@ -136,6 +136,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /***/ }),
 
+/***/ "./frontend/actions/like_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/like_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_LIKE, REMOVE_LIKE, receiveLike, removeLike, likePicture, unlikePicture */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIKE", function() { return RECEIVE_LIKE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LIKE", function() { return REMOVE_LIKE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLike", function() { return receiveLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeLike", function() { return removeLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "likePicture", function() { return likePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlikePicture", function() { return unlikePicture; });
+/* harmony import */ var _util_like_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/like_util */ "./frontend/util/like_util.js");
+
+var RECEIVE_LIKE = 'RECEIVE_LIKE';
+var REMOVE_LIKE = 'REMOVE_LIKE';
+var receiveLike = function receiveLike(like) {
+  return {
+    type: RECEIVE_LIKE,
+    like: like
+  };
+};
+var removeLike = function removeLike(like) {
+  return {
+    type: REMOVE_LIKE,
+    like: like
+  };
+};
+var likePicture = function likePicture(like) {
+  return function (dispatch) {
+    _util_like_util__WEBPACK_IMPORTED_MODULE_0__["likePicture"](like).then(function (like) {
+      return dispatch(receiveLike(like));
+    });
+  };
+};
+var unlikePicture = function unlikePicture(likeId) {
+  return function (dispatch) {
+    _util_like_util__WEBPACK_IMPORTED_MODULE_0__["unlikePicture"](likeId).then(function (like) {
+      return dispatch(removeLike(like));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -246,8 +294,8 @@ var fetchPictures = function fetchPictures() {
 };
 var fetchPicture = function fetchPicture(picId) {
   return function (dispatch) {
-    return _util_picture_util__WEBPACK_IMPORTED_MODULE_0__["fetchPicture"](picId).then(function (pictures) {
-      return dispatch(receivePicture(pictures));
+    return _util_picture_util__WEBPACK_IMPORTED_MODULE_0__["fetchPicture"](picId).then(function (picture) {
+      return dispatch(receivePicture(picture));
     });
   };
 };
@@ -364,7 +412,7 @@ var signupUser = function signupUser(formUser) {
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_USER, RECEIVE_ERRORS, RECEIVE_AVATAR, receiveUser, receiveErrors, receiveAvatar, fetchUser, createAvatar, updateAvatar */
+/*! exports provided: RECEIVE_USER, RECEIVE_ERRORS, RECEIVE_AVATAR, receiveUser, receiveErrors, receiveAvatar, fetchUser, createAvatar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -377,7 +425,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAvatar", function() { return receiveAvatar; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAvatar", function() { return createAvatar; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAvatar", function() { return updateAvatar; });
 /* harmony import */ var _util_user_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_utils */ "./frontend/util/user_utils.js");
 
 var RECEIVE_USER = 'RECEIVE_USER';
@@ -418,16 +465,15 @@ var createAvatar = function createAvatar(avatar) {
       return dispatch(receiveErrors(err.responseJSON));
     });
   };
-};
-var updateAvatar = function updateAvatar(avatar) {
-  return function (dispatch) {
-    return _util_user_utils__WEBPACK_IMPORTED_MODULE_0__["updateAvatar"](avatar).then(function (avatar) {
-      dispatch(receiveAvatar(avatar));
-    }, function (err) {
-      return dispatch(receiveErrors(err.responseJSON));
-    });
-  };
-};
+}; // export const updateAvatar = avatar => dispatch => {
+//     return(
+//         UserUtil.updateAvatar(avatar).then((avatar) => { 
+//             dispatch(receiveAvatar(avatar))
+//         }, err => (
+//             dispatch(receiveErrors(err.responseJSON))
+//         ))
+//         )
+// }
 
 /***/ }),
 
@@ -1736,12 +1782,20 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, PictureShow);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PictureShow).call(this, props));
+    _this.state = {
+      likeButton: "",
+      likeCount: 0,
+      likedImg: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-heart fa-2x liked-icon"
+      }),
+      notLikedImg: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "far fa-heart fa-2x not-liked-icon"
+      })
+    };
     _this.handlePrevClick = _this.handlePrevClick.bind(_assertThisInitialized(_this));
     _this.handleNextClick = _this.handleNextClick.bind(_assertThisInitialized(_this));
-    _this.getKeyByValue = _this.getKeyByValue.bind(_assertThisInitialized(_this)); // this.state = {
-    //     error: ""
-    // };
-
+    _this.getKeyByValue = _this.getKeyByValue.bind(_assertThisInitialized(_this));
+    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1754,13 +1808,19 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
+      // debugger
       if (prevProps.pictureId !== this.props.pictureId) {
         this.props.fetchPicture(this.props.pictureId);
       }
 
       if (Object.values(this.props.hashOfIds).length <= 1) {
         this.props.fetchPictures();
-      }
+      } // if ()
+      // debugger
+      // if(this.props.picture && this.props.picture.likers !== this.prevProps.picture.likers) {
+      //     this.props.fetchPicture(this.props.pictureId)
+      // }
+
     }
   }, {
     key: "getKeyByValue",
@@ -1822,19 +1882,73 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
 
     }
   }, {
+    key: "handleLike",
+    value: function handleLike(id) {
+      // debugger
+      // if (this.state.updateLike==="0"){
+      //     this.setState({updateLike: "1"})
+      // } else {
+      //     debugger
+      //     this.setState({updateLike: "0"})
+      // this.setState({updateLike : this.state.updateLike ? false: true})
+      // debugger
+      if (this.state.likeButton === this.state.likedImg || (this.state.likeButton = "" && false && false)) {
+        this.setState({
+          likeButton: this.state.notLikedImg,
+          likeCount: this.state.likeCount - 1
+        });
+        this.props.unlikePicture(id);
+      } else {
+        this.setState({
+          likeButton: this.state.likedImg,
+          likeCount: this.state.likeCount + 1
+        }); // debugger
+        // let like = {like: {liker_id: this.props.currentUserId, picture_id: this.props.pictureId}}
+
+        this.props.likePicture(id);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      // debugger
       var _this$props = this.props,
           picture = _this$props.picture,
           pictureId = _this$props.pictureId,
-          editorsChoice = _this$props.editorsChoice;
+          editorsChoice = _this$props.editorsChoice,
+          numLikes = _this$props.numLikes;
       var authorName = this.props.picture ? this.props.picture.authorName : null;
       var editors = "No";
 
       if (editorsChoice) {
         editors = "Yes";
       } // const displayError = this.state.error.length > 0 ? this.state.error : null
+      // const numLikes = this.props.picture && this.props.picture.likers ? this.props.picture.likers.length : 0
+      // this.setState({likes: numlikes})
 
+
+      var likeIcon;
+
+      if (this.state.likeButton === "") {
+        likeIcon = this.props.picture && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-heart fa-2x liked-icon"
+        }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "far fa-heart fa-2x not-liked-icon"
+        });
+      } else {
+        likeIcon = this.state.likeButton;
+      } // this.setState({likeButton: likedIcon})
+
+
+      var numLikesDisplay;
+
+      if (this.state.likeCount === "") {
+        numLikesDisplay = numLikes;
+      } else {
+        numLikesDisplay = parseInt(this.state.likeCount) + numLikes;
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-show-container"
@@ -1859,14 +1973,21 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-holder"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lower-box"
+        className: "text-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "like-container",
+        onClick: function onClick() {
+          return _this2.handleLike(pictureId);
+        }
+      }, likeIcon, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "num-likes"
+      }, numLikesDisplay)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-title"
       }, picture.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "author-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "by"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", authorName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "description-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, picture.description))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, picture.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "equip-and-editor-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "equip-box"
@@ -1880,7 +2001,7 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
         className: "editors-choice-icon"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "equipment"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Editors' choice:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, editors))))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Editors' choice:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, editors)))))));
     }
   }]);
 
@@ -1902,7 +2023,9 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_picture_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/picture_actions */ "./frontend/actions/picture_actions.js");
-/* harmony import */ var _picture_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./picture_show */ "./frontend/components/picture/picture_show.jsx");
+/* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/like_actions */ "./frontend/actions/like_actions.js");
+/* harmony import */ var _picture_show__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./picture_show */ "./frontend/components/picture/picture_show.jsx");
+
 
 
 
@@ -1911,6 +2034,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   // debugger
   var editorsChoice = state.entities.pictures[ownProps.match.params.pictureId] ? state.entities.pictures[ownProps.match.params.pictureId].editors_choice : null;
   var hashOfIds = {};
+  var picture = state.entities.pictures[ownProps.match.params.pictureId] || {};
+  var numLikes = picture && picture.likers ? picture.likers.length : 0;
 
   if (Object.values(state.entities.pictures).length > 0) {
     Object.values(state.entities.pictures).forEach(function (picture, idx) {
@@ -1920,11 +2045,16 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   }
 
   ;
+  var likes = Object.values(state.entities.likes).filter(function (like) {
+    return like.picture_id === ownProps.match.params.pictureId;
+  });
   return {
-    picture: state.entities.pictures[ownProps.match.params.pictureId] || {},
+    picture: picture,
     pictureId: ownProps.match.params.pictureId,
     editorsChoice: editorsChoice,
-    hashOfIds: hashOfIds
+    hashOfIds: hashOfIds,
+    currentUserId: state.session.id || null,
+    numLikes: numLikes
   };
 };
 
@@ -1935,11 +2065,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchPictures: function fetchPictures() {
       return dispatch(Object(_actions_picture_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPictures"])());
+    },
+    likePicture: function likePicture(id) {
+      return dispatch(Object(_actions_like_actions__WEBPACK_IMPORTED_MODULE_2__["likePicture"])(id));
+    },
+    unlikePicture: function unlikePicture(id) {
+      return dispatch(Object(_actions_like_actions__WEBPACK_IMPORTED_MODULE_2__["unlikePicture"])(id));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_picture_show__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_picture_show__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -1986,9 +2122,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     createAvatar: function createAvatar(avatar) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["createAvatar"])(avatar));
     },
-    updateAvatar: function updateAvatar(avatar) {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["updateAvatar"])(avatar));
-    },
+    // updateAvatar: (avatar) => dispatch(updateAvatar(avatar)),
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])(modal));
     },
@@ -2318,12 +2452,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _picture_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./picture_reducer */ "./frontend/reducers/picture_reducer.js");
+/* harmony import */ var _likes_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./likes_reducer */ "./frontend/reducers/likes_reducer.js");
+
 
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  pictures: _picture_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  pictures: _picture_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  likes: _likes_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -2349,6 +2486,44 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
   picture_errors: _picture_error_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/likes_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/likes_reducer.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/like_actions */ "./frontend/actions/like_actions.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  // debugger
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+  var pictureId;
+
+  switch (action.type) {
+    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIKE"]:
+      // debugger
+      // pictureId = action.like.picture_id;  
+      nextState[action.like.id] = action.like;
+      return nextState;
+
+    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIKE"]:
+      var deletedId = action.like.id;
+      delete nextState[deletedId];
+      return nextState;
+
+    default:
+      return state;
+  }
+});
 
 /***/ }),
 
@@ -2426,8 +2601,7 @@ __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-
-var pictureReducer = function pictureReducer() {
+/* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   // debugger
@@ -2452,9 +2626,7 @@ var pictureReducer = function pictureReducer() {
     default:
       return state;
   }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (pictureReducer);
+});
 
 /***/ }),
 
@@ -2638,6 +2810,37 @@ var configureStore = function configureStore() {
 
 /***/ }),
 
+/***/ "./frontend/util/like_util.js":
+/*!************************************!*\
+  !*** ./frontend/util/like_util.js ***!
+  \************************************/
+/*! exports provided: likePicture, unlikePicture */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "likePicture", function() { return likePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlikePicture", function() { return unlikePicture; });
+var likePicture = function likePicture(pictureId) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/likes",
+    data: {
+      like: {
+        picture_id: pictureId
+      }
+    }
+  });
+};
+var unlikePicture = function unlikePicture(pictureId) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/likes/".concat(pictureId)
+  });
+};
+
+/***/ }),
+
 /***/ "./frontend/util/picture_util.js":
 /*!***************************************!*\
   !*** ./frontend/util/picture_util.js ***!
@@ -2661,6 +2864,7 @@ var fetchPictures = function fetchPictures() {
   });
 };
 var fetchPicture = function fetchPicture(picId) {
+  // debugger
   return $.ajax({
     method: "GET",
     url: "/api/pictures/".concat(picId)

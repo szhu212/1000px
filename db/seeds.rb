@@ -84,3 +84,47 @@ p.keys.each do |n|
     file = open("https://100illusts-dev.s3-us-west-1.amazonaws.com/#{n}.jpg")
     p[n].picture.attach(io: file, filename: "0#{n}.jpg")
 end
+
+
+Like.destroy_all
+l = Hash.new()
+l[0] = Like.create(liker_id: user[0].id, picture_id: p[1].id)
+l[1] = Like.create(liker_id: user[0].id, picture_id: p[2].id)
+l[2] = Like.create(liker_id: user[0].id, picture_id: p[9].id)
+l[3] = Like.create(liker_id: user[0].id, picture_id: p[25].id)
+l[4] = Like.create(liker_id: user[0].id, picture_id: p[40].id)
+l[5] = Like.create(liker_id: user[1].id, picture_id: p[0].id)
+l[6] = Like.create(liker_id: user[1].id, picture_id: p[2].id)
+l[7] = Like.create(liker_id: user[1].id, picture_id: p[4].id)
+l[8] = Like.create(liker_id: user[1].id, picture_id: p[5].id)
+l[9] = Like.create(liker_id: user[1].id, picture_id: p[8].id)
+l[10] = Like.create(liker_id: user[2].id, picture_id: p[0].id)
+l[11] = Like.create(liker_id: user[2].id, picture_id: p[3].id)
+l[12] = Like.create(liker_id: user[2].id, picture_id: p[4].id)
+l[13] = Like.create(liker_id: user[2].id, picture_id: p[21].id)
+l[14] = Like.create(liker_id: user[3].id, picture_id: p[0].id)
+l[15] = Like.create(liker_id: user[3].id, picture_id: p[2].id)
+l[16] = Like.create(liker_id: user[3].id, picture_id: p[7].id)
+l[17] = Like.create(liker_id: user[3].id, picture_id: p[6].id)
+l[18] = Like.create(liker_id: user[3].id, picture_id: p[8].id)
+l[19] = Like.create(liker_id: user[3].id, picture_id: p[9].id)
+l[20] = Like.create(liker_id: user[3].id, picture_id: p[10].id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

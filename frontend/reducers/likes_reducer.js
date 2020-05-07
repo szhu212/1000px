@@ -1,18 +1,22 @@
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions'
 
-const LikesReducer = (state = {}, action) => {
-    debugger
+export default (state = {}, action) => {
+    // debugger
     Object.freeze(state)
+    const nextState = Object.assign({}, state);
+    let pictureId 
     switch (action.type) {
         case RECEIVE_LIKE:
-            let pictureId = action.like.picture_id;  
-            return Object.assign({}, state, {[pictureId]: action.like.liker_id})
+            // debugger
+            // pictureId = action.like.picture_id;  
+            nextState[action.like.id] = action.like
+            return nextState
         case REMOVE_LIKE:
-            let nextState = Object.assign({}, state);
-            let pictureId = action.like.picture_id; 
-            delete 
+            let deletedId = action.like.id
+            delete nextState[deletedId]
+            return nextState
         default:
-            break;
+            return state;
     }
 
 }

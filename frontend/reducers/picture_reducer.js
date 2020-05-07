@@ -1,6 +1,6 @@
 import { RECEIVE_PICTURES, RECEIVE_PICTURE, REMOVE_PICTURE, RECEIVE_USER_PICTURES } from '../actions/picture_actions';
 
-const pictureReducer = (state = {}, action) => {
+export default (state = {}, action) => {
     // debugger
     Object.freeze(state)
    
@@ -20,5 +20,3 @@ const pictureReducer = (state = {}, action) => {
             return state;
     }
 }
-
-export default pictureReducer;

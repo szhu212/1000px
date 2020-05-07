@@ -13,12 +13,12 @@ export const removeLike = like => ({
     like
 })
 
-export const likePicture = pictureId => dispatch => {
-    LikeUtil.likePicture(pictureId) 
+export const likePicture = like => dispatch => {
+    LikeUtil.likePicture(like) 
     .then(like=> dispatch(receiveLike(like)))
 }
 
-export const unlikePicture = pictureId => dispatch => {
-    LikeUtil.unlikePicture(pictureId)
-    .then(like => dispatch(receiveUnlike(like)))
-}
+export const unlikePicture = likeId => dispatch => {
+    LikeUtil.unlikePicture(likeId)
+    .then(like => dispatch(removeLike(like)))
+}  

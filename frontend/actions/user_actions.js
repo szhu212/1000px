@@ -42,12 +42,12 @@ export const createAvatar = avatar => dispatch => {
         )
 }
 
-export const updateAvatar = avatar => dispatch => {
-    return(
-        UserUtil.updateAvatar(avatar).then((avatar) => { 
-            dispatch(receiveAvatar(avatar))
-        }, err => (
-            dispatch(receiveErrors(err.responseJSON))
-        ))
-        )
-}
+// export const updateAvatar = avatar => dispatch => {
+//     return(
+//         UserUtil.updateAvatar(avatar).then((avatar) => { 
+//             dispatch(receiveAvatar(avatar))
+//         }, err => (
+//             dispatch(receiveErrors(err.responseJSON))
+//         ))
+//         )
+// }
