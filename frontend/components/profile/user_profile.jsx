@@ -21,12 +21,12 @@ class UserProfile extends React.Component {
         // debugger
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         // debugger
         if (prevProps.avatarUrl !== this.props.avatarUrl){
             this.props.fetchUser(prevProps.userId)
         }
-        if(this.props.userPictures[0] && this.props.userPictures[0].author_id !== this.props.userId){
+        if(this.props.userPictures && this.props.userPictures[0].author_id !== this.props.userId){
             this.props.fetchUserPictures(this.props.userId)
         }
     }
