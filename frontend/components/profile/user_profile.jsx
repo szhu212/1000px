@@ -6,26 +6,33 @@ class UserProfile extends React.Component {
 
     constructor(props){
         super(props);
+        this.state = {
+            userId: ""
+        }
     }
     
     componentDidMount() {
         // debugger
         if (this.props.userId) {
+            this.setState({userId: this.props.userId})
             this.props.fetchUser(this.props.userId)
             this.props.fetchUserPictures(this.props.userId)
         }
         // debugger
     }
 
-    componentDidUpdate(prevProps) {
-        debugger
+    componentDidUpdate(prevProps, prevState) {
+        // debugger
         if (prevProps.avatarUrl !== this.props.avatarUrl){
             this.props.fetchUser(prevProps.userId)
+        }
+        if(this.props.userPictures[0] && this.props.userPictures[0].author_id !== this.props.userId){
+            this.props.fetchUserPictures(this.props.userId)
         }
     }
 
     render() {
-        debugger
+        // debugger
         const username = this.props.username ? this.props.username : null
         const pictures = this.props.userPictures ? this.props.userPictures : null
         const display = (pictures && Object.keys(pictures).length > 0)? (
@@ -41,11 +48,15 @@ class UserProfile extends React.Component {
             : null
        
         const profileUrl = this.props.avatarUrl? this.props.avatarUrl : window.userpicURL
+        const userClick = this.props.userId === this.props.currentUesrId?  
+            <img src={profileUrl} 
+            className="profile-img current-user-profile"
+            onClick={()=>this.props.openModal('uploadAvatar')}/> 
+            :  <img src={profileUrl} 
+            className="profile-img"/>
         return(
             <div className="user-profile-page">
-                <img src={profileUrl} 
-                className="profile-img"
-                onClick={()=>this.props.openModal('uploadAvatar')}/>
+                {userClick}
                 <p className="username">{username}</p>
                 <h2>Uploaded Illustrations</h2>
                 {display}

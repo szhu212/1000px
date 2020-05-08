@@ -1918,8 +1918,17 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
           picture = _this$props.picture,
           pictureId = _this$props.pictureId,
           editorsChoice = _this$props.editorsChoice,
-          numLikes = _this$props.numLikes;
-      var authorName = this.props.picture ? this.props.picture.authorName : null;
+          numLikes = _this$props.numLikes,
+          userAvatar = _this$props.userAvatar,
+          authorName = _this$props.authorName,
+          authorId = _this$props.authorId; // const authorName = this.props.picture? this.props.picture.authorName : null
+
+      var authorLink = authorId ? "".concat(authorId) : null;
+      var avatarDisplay = userAvatar ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: userAvatar
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.userpicURL
+      });
       var editors = "No";
 
       if (editorsChoice) {
@@ -1932,11 +1941,7 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
       var likeIcon;
 
       if (this.state.likeButton === "") {
-        likeIcon = this.props.picture && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "fas fa-heart fa-2x liked-icon"
-        }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "far fa-heart fa-2x not-liked-icon"
-        });
+        likeIcon = this.props.picture && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId) ? this.state.likedImg : this.state.notLikedImg;
       } else {
         likeIcon = this.state.likeButton;
       } // this.setState({likeButton: likedIcon})
@@ -1975,17 +1980,27 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "like-container",
+        className: "like-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "like-icon",
         onClick: function onClick() {
           return _this2.handleLike(pictureId);
         }
-      }, likeIcon, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, likeIcon), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "num-likes"
       }, numLikesDisplay)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-and-author-info"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture-title-and-author"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-title"
       }, picture.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "author-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "by"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", authorName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "by"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", authorName))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "author-avatar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/users/".concat(authorLink)
+      }, avatarDisplay))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "description-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, picture.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "equip-and-editor-box"
@@ -2031,11 +2046,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger
-  var editorsChoice = state.entities.pictures[ownProps.match.params.pictureId] ? state.entities.pictures[ownProps.match.params.pictureId].editors_choice : null;
-  var hashOfIds = {};
+  debugger;
   var picture = state.entities.pictures[ownProps.match.params.pictureId] || {};
+  var editorsChoice = picture ? picture.editors_choice : null;
+  var hashOfIds = {};
   var numLikes = picture && picture.likers ? picture.likers.length : 0;
+  var userAvatar = picture.authorAvatarUrl || null;
+  var authorName = picture.authorName || null;
+  var authorId = picture.authorId || null;
 
   if (Object.values(state.entities.pictures).length > 0) {
     Object.values(state.entities.pictures).forEach(function (picture, idx) {
@@ -2045,16 +2063,16 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   }
 
   ;
-  var likes = Object.values(state.entities.likes).filter(function (like) {
-    return like.picture_id === ownProps.match.params.pictureId;
-  });
   return {
     picture: picture,
     pictureId: ownProps.match.params.pictureId,
     editorsChoice: editorsChoice,
     hashOfIds: hashOfIds,
     currentUserId: state.session.id || null,
-    numLikes: numLikes
+    numLikes: numLikes,
+    userAvatar: userAvatar,
+    authorName: authorName,
+    authorId: authorId
   };
 };
 
@@ -2294,9 +2312,15 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
   _inherits(UserProfile, _React$Component);
 
   function UserProfile(props) {
+    var _this;
+
     _classCallCheck(this, UserProfile);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(UserProfile).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(UserProfile).call(this, props));
+    _this.state = {
+      userId: ""
+    };
+    return _this;
   }
 
   _createClass(UserProfile, [{
@@ -2304,6 +2328,9 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // debugger
       if (this.props.userId) {
+        this.setState({
+          userId: this.props.userId
+        });
         this.props.fetchUser(this.props.userId);
         this.props.fetchUserPictures(this.props.userId);
       } // debugger
@@ -2311,19 +2338,22 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      debugger;
-
+    value: function componentDidUpdate(prevProps, prevState) {
+      // debugger
       if (prevProps.avatarUrl !== this.props.avatarUrl) {
         this.props.fetchUser(prevProps.userId);
+      }
+
+      if (this.props.userPictures[0] && this.props.userPictures[0].author_id !== this.props.userId) {
+        this.props.fetchUserPictures(this.props.userId);
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
-      debugger;
+      // debugger
       var username = this.props.username ? this.props.username : null;
       var pictures = this.props.userPictures ? this.props.userPictures : null;
       var display = pictures && Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2335,15 +2365,19 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
         });
       })) : null;
       var profileUrl = this.props.avatarUrl ? this.props.avatarUrl : window.userpicURL;
+      var userClick = this.props.userId === this.props.currentUesrId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: profileUrl,
+        className: "profile-img current-user-profile",
+        onClick: function onClick() {
+          return _this2.props.openModal('uploadAvatar');
+        }
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: profileUrl,
+        className: "profile-img"
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-profile-page"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: profileUrl,
-        className: "profile-img",
-        onClick: function onClick() {
-          return _this.props.openModal('uploadAvatar');
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, userClick, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "username"
       }, username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Uploaded Illustrations"), display);
     }
@@ -2379,7 +2413,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
+  // debugger
   var userId = parseInt(ownProps.match.params.userId);
   var username = state.entities.users[userId] ? state.entities.users[userId].username : null;
   var userPictures = Object.values(state.entities.pictures).length > 0 ? Object.values(state.entities.pictures) : null;
@@ -2388,7 +2422,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     userId: userId,
     username: username,
     userPictures: userPictures,
-    avatarUrl: avatarUrl
+    avatarUrl: avatarUrl,
+    currentUesrId: state.session.id
   };
 };
 

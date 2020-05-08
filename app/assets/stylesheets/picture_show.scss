@@ -16,7 +16,7 @@
 .individual-pic img {
     margin-top: 20px;
     margin-bottom: 20px;
-    max-width: 80%;
+    max-width: 70%;
     height: auto;
     max-height: 480px;
 }
@@ -41,9 +41,10 @@
 }
 
 .author-box{
-    border-bottom: 1px solid rgb(210, 210, 210);
+    // border-bottom: 1px solid rgb(210, 210, 210);
     font-weight: lighter;
     padding-bottom: 20px;
+    margin-top: 10px;
 }
 
 .description-box{
@@ -57,11 +58,18 @@
     background-image: image-url('paint-brush-solid.svg');
     width: 20px;
     height: 20px;
+    background-repeat: no-repeat;
 }
 
-.equip-box ,.editor-box, .equip-and-editor-box{
+.equip-box , .equip-and-editor-box{
     display: flex;
     flex-direction: row;
+}
+
+.editor-box {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
 }
 
 .bottom-box {
@@ -74,6 +82,7 @@
     background-image: image-url('medal-solid.svg');
     width: 20px;
     height: 20px;
+    background-repeat: no-repeat;
 }
 
 .prev-pic-button, .next-pic-button {
@@ -115,7 +124,7 @@
     align-items: center;
 }
 
-.like-container:hover {
+.like-icon:hover {
     cursor: pointer;
    
 }
@@ -144,12 +153,26 @@
 .far ,.fa-heart{
     width: 30px;
     height: 30px;
-    color: red;
-    // background-color: red;
+    color: rgb(248, 105, 62);
+
 }
 
 .num-likes {
     margin-left: 16px;
-    // text-align: center;
-    // padding: 5px;
+    color: rgb(95, 95, 95);
+
+}
+
+.title-and-author-info {
+    border-bottom: 1px solid rgb(210, 210, 210);
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-and-author-info .author-avatar img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
 }

@@ -119,8 +119,10 @@ class PictureShow extends React.Component {
 
     render(){
         // debugger
-        const {picture, pictureId, editorsChoice, numLikes} = this.props
-        const authorName = this.props.picture? this.props.picture.authorName : null
+        const {picture, pictureId, editorsChoice, numLikes, userAvatar, authorName, authorId} = this.props
+        // const authorName = this.props.picture? this.props.picture.authorName : null
+        const authorLink = authorId? `${authorId}` : null
+        const avatarDisplay = userAvatar? <img src={userAvatar}/> : <img src={window.userpicURL} />
         let editors = "No"
         if (editorsChoice){editors = "Yes"}
         // const displayError = this.state.error.length > 0 ? this.state.error : null
@@ -129,9 +131,9 @@ class PictureShow extends React.Component {
         let likeIcon 
         if(this.state.likeButton===""){
             likeIcon= this.props.picture && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId)? 
-            <i className="fas fa-heart fa-2x liked-icon"></i>
+            this.state.likedImg
              :
-            <i className="far fa-heart fa-2x not-liked-icon"></i>
+            this.state.notLikedImg
         } else {
             likeIcon = this.state.likeButton
         }
@@ -164,20 +166,31 @@ class PictureShow extends React.Component {
            
             <div className="text-holder">
                 <div className="text-box">
-                     <div className="like-container" onClick={()=>this.handleLike(pictureId)}>
-                         {likeIcon} 
-                         {/* {this.state.likeButton} */}
+                     <div className="like-container" >
+                         <div className="like-icon" onClick={()=>this.handleLike(pictureId)}>
+                            {likeIcon} 
+                         </div>
                         <div className="num-likes">
-                        {numLikesDisplay}
+                             {numLikesDisplay}
                         </div>
                      </div>
-                    <div className="picture-title"> 
-                        {picture.title}
-                    </div>
-                    <div className="author-box">
-                        <span>by</span>
-                        <span> {authorName}</span>
-                    </div>
+                     <div className="title-and-author-info">
+                         <div className="picture-title-and-author">
+                            <div className="picture-title"> 
+                                {picture.title}
+                            </div>
+                            <div className="author-box">
+                                <span>by</span>
+                                <span> {authorName}</span>
+                            </div>
+                         </div>
+                         <div className="author-avatar">
+                             <Link to={`/users/${authorLink}`}>
+                                 {avatarDisplay}
+                             </Link>
+                         </div>
+
+                     </div>
                     <div className="description-box">
                         <span>{picture.description}</span>
                     </div>

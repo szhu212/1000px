@@ -4,11 +4,14 @@ import { likePicture, unlikePicture } from '../../actions/like_actions'
 import PictureShow from './picture_show';
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
-  const editorsChoice = state.entities.pictures[ownProps.match.params.pictureId]? state.entities.pictures[ownProps.match.params.pictureId].editors_choice : null
-  const hashOfIds = {}
+  debugger
   const picture = state.entities.pictures[ownProps.match.params.pictureId]|| {}
-  const numLikes = picture && picture.likers ? picture.likers.length : 0
+  const editorsChoice = picture? picture.editors_choice : null
+  const hashOfIds = {}
+  const numLikes = picture && picture.likers ? picture.likers.length : 0;
+  const userAvatar = picture.authorAvatarUrl || null;
+  const authorName = picture.authorName || null
+  const authorId = picture.authorId || null;
   if (Object.values(state.entities.pictures).length > 0){
      Object.values(state.entities.pictures).forEach((picture, idx) => { 
       //  debugger
@@ -16,14 +19,16 @@ const mapStateToProps = (state, ownProps) => {
     //  debugger
     }
   )};
-  const likes = Object.values(state.entities.likes).filter(like => like.picture_id === ownProps.match.params.pictureId)
   return {
       picture,
       pictureId: ownProps.match.params.pictureId,
       editorsChoice: editorsChoice,
       hashOfIds: hashOfIds,
       currentUserId:state.session.id || null,
-      numLikes
+      numLikes,
+      userAvatar,
+      authorName,
+      authorId,
     };
   };
   
