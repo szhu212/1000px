@@ -4,7 +4,7 @@ import { likePicture, unlikePicture } from '../../actions/like_actions'
 import PictureShow from './picture_show';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
+  // debugger
   const picture = state.entities.pictures[ownProps.match.params.pictureId]|| {}
   const editorsChoice = picture? picture.editors_choice : null
   const hashOfIds = {}

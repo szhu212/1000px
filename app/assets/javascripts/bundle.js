@@ -332,6 +332,45 @@ var fetchUserPictures = function fetchUserPictures(userId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/search_action.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/search_action.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_SEARCH, CLEAR_SEARCH, receiveSearch, clearSearch, search */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SEARCH", function() { return RECEIVE_SEARCH; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_SEARCH", function() { return CLEAR_SEARCH; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSearch", function() { return receiveSearch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearSearch", function() { return clearSearch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "search", function() { return search; });
+/* harmony import */ var _util_search_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/search_util */ "./frontend/util/search_util.js");
+
+var RECEIVE_SEARCH = 'RECEIVE_SEARCH';
+var CLEAR_SEARCH = 'CLEAR_SEARCH';
+var receiveSearch = function receiveSearch(search) {
+  return {
+    type: RECEIVE_SEARCH,
+    search: search
+  };
+};
+var clearSearch = function clearSearch() {
+  return {
+    type: CLEAR_SEARCH
+  };
+};
+var search = function search(input) {
+  return function (dispatch) {
+    return _util_search_util__WEBPACK_IMPORTED_MODULE_0__["search"](input).then(function (search) {
+      return dispatch(receiveSearch(search));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -1051,6 +1090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _search_search_bar_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../search/search_bar_container */ "./frontend/components/search/search_bar_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1068,6 +1108,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1148,7 +1189,7 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
         className: "discover-button"
       }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/discover"
-      }, "Discover")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, "Discover")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_bar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "nav-right"
       }, userButton, display));
     }
@@ -1310,8 +1351,8 @@ var createPicture = /*#__PURE__*/function (_React$Component) {
         formData.append('picture[description]', this.state.description);
         formData.append('picture[equipment_or_material]', this.state.equipment_or_material);
         formData.append('picture[author_id]', this.state.author_id);
-        formData.append('picture[picture]', this.state.pictureFile);
-        debugger;
+        formData.append('picture[picture]', this.state.pictureFile); // debugger
+
         this.props.createPicture(formData).then(function () {
           return _this2.props.history.push("/discover");
         }); // debugger
@@ -2046,7 +2087,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
+  // debugger
   var picture = state.entities.pictures[ownProps.match.params.pictureId] || {};
   var editorsChoice = picture ? picture.editors_choice : null;
   var hashOfIds = {};
@@ -2475,6 +2516,204 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/search/search_bar.jsx":
+/*!***************************************************!*\
+  !*** ./frontend/components/search/search_bar.jsx ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _search_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_item */ "./frontend/components/search/search_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var SearchBar = /*#__PURE__*/function (_React$Component) {
+  _inherits(SearchBar, _React$Component);
+
+  function SearchBar(props) {
+    var _this;
+
+    _classCallCheck(this, SearchBar);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SearchBar).call(this, props));
+    _this.state = {
+      search: ""
+    };
+    _this.handlechange = _this.handlechange.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(SearchBar, [{
+    key: "handlechange",
+    value: function handlechange(e) {
+      e.preventDefault();
+      var currentVal = e.currentTarget.value;
+      this.setState({
+        search: currentVal
+      });
+
+      if (currentVal !== "") {
+        this.props.search(currentVal);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      // debugger
+      var searchResult = this.props.pictures.length > 0 ? this.props.pictures.map(function (picture) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          picture: picture,
+          key: picture.id
+        });
+      }) : null; // debugger
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.search,
+        onChange: this.handlechange,
+        placeholder: "Search 1000Illusts"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-result-list"
+      }, searchResult));
+    }
+  }]);
+
+  return SearchBar;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchBar);
+
+/***/ }),
+
+/***/ "./frontend/components/search/search_bar_container.js":
+/*!************************************************************!*\
+  !*** ./frontend/components/search/search_bar_container.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_search_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/search_action */ "./frontend/actions/search_action.js");
+/* harmony import */ var _search_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./search_bar */ "./frontend/components/search/search_bar.jsx");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  // debugger
+  var pictures = Object.values(state.entities.searches);
+  return {
+    pictures: pictures
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    search: function search(searchInput) {
+      return dispatch(Object(_actions_search_action__WEBPACK_IMPORTED_MODULE_2__["search"])(searchInput));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_search_bar__WEBPACK_IMPORTED_MODULE_3__["default"])));
+
+/***/ }),
+
+/***/ "./frontend/components/search/search_item.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/search/search_item.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var SearchItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(SearchItem, _React$Component);
+
+  function SearchItem(props) {
+    _classCallCheck(this, SearchItem);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(SearchItem).call(this, props));
+  }
+
+  _createClass(SearchItem, [{
+    key: "render",
+    value: function render() {
+      // debugger
+      var _this$props$picture = this.props.picture,
+          title = _this$props$picture.title,
+          photoUrl = _this$props$picture.photoUrl;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/pictures/".concat(this.props.picture.id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: photoUrl,
+        className: "search-item-img"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, title))));
+    }
+  }]);
+
+  return SearchItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchItem);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities_reducer.js":
 /*!***********************************************!*\
   !*** ./frontend/reducers/entities_reducer.js ***!
@@ -2488,6 +2727,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _picture_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./picture_reducer */ "./frontend/reducers/picture_reducer.js");
 /* harmony import */ var _likes_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./likes_reducer */ "./frontend/reducers/likes_reducer.js");
+/* harmony import */ var _searches_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./searches_reducer */ "./frontend/reducers/searches_reducer.js");
+
 
 
 
@@ -2495,7 +2736,8 @@ __webpack_require__.r(__webpack_exports__);
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   pictures: _picture_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  likes: _likes_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  likes: _likes_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  searches: _searches_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -2691,6 +2933,37 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   ui: _ui_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/searches_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/searches_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_search_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/search_action */ "./frontend/actions/search_action.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  // debugger
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_search_action__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
+      return action.search;
+
+    case _actions_search_action__WEBPACK_IMPORTED_MODULE_0__["CLEAR_SEARCH"]:
+      return {};
+
+    default:
+      return state;
+  }
+});
 
 /***/ }),
 
@@ -2998,6 +3271,28 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, null)(Auth));
 var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Protected));
+
+/***/ }),
+
+/***/ "./frontend/util/search_util.js":
+/*!**************************************!*\
+  !*** ./frontend/util/search_util.js ***!
+  \**************************************/
+/*! exports provided: search */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "search", function() { return search; });
+var search = function search(searchInput) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/searches",
+    data: {
+      search: searchInput
+    }
+  });
+};
 
 /***/ }),
 

@@ -18,7 +18,7 @@ class PictureIndexItem extends React.Component {
     
     render(){
         // debugger
-        const picture = this.props.picture
+        const { picture } = this.props
 
         return(
            <div className="picture-item"

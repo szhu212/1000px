@@ -27,7 +27,7 @@ class createPicture extends React.Component {
             formData.append('picture[equipment_or_material]', this.state.equipment_or_material)
             formData.append('picture[author_id]', this.state.author_id)
             formData.append('picture[picture]', this.state.pictureFile)
-            debugger
+            // debugger
             this.props.createPicture(formData)
                 .then( () => this.props.history
                 .push(`/discover`));

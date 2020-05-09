@@ -1,0 +1,25 @@
+// Place all the styles related to the searches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.search-result-list {
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.search-item img {
+    height: 30px; 
+}
+
+.search-item li {
+    display: flex;
+    padding: 2px 5px;
+}
+
+.search-item li:hover {
+    background-color: rgb(64, 214, 184);
+    transition: background-color .25s ease-in-out;
+}

@@ -35,8 +35,25 @@
     transition: all .25s ease-in-out;
 }
 
-.nav-left, .subnav-left, .session-button,.nav-right {
+ .subnav-left, .session-button,.nav-right {
     display: flex;
+}
+
+.nav-left {
+    display: flex;
+    flex-grow: 9;
+}
+
+.nav-right {
+    flex-grow: 0;
+}
+
+.subnav-left .discover-button{
+    flex-grow: 0;
+}
+
+.subnav-left .search-container {
+    flex-grow: 9;
 }
 
 .dropdown-container {
@@ -131,5 +148,11 @@
     color: white;
     background-color: rgb(64, 214, 184);
     // transition: all .25s ease-in-out;
+}
+
+.subnav-left input{
+    padding: 10px 12px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
 }
 

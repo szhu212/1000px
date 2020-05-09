@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SearchContainer from "../search/search_bar_container"
 
 
 class NavBar extends React.Component {
@@ -52,6 +53,7 @@ class NavBar extends React.Component {
                     <ul className="subnav-left">
                         <li className="discover-button"> <Link to="/discover">Discover</Link></li>
                         {/* <li><Link to="/about">About</Link></li>   */}
+                        <SearchContainer />
                     </ul>
                 </div>
                 <ul className="nav-right">
