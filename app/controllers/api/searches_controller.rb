@@ -1,8 +1,7 @@
 class Api::SearchesController < ApplicationController
 
     def index
-        @pictures = Picture.where("title~* ?", params[:search]).or(Picture.where("description~* ?", params[:search]))
-
+        @pictures = Picture.where("title~* ?", params[:search])
         if @pictures
             render :index
         else

@@ -88,7 +88,7 @@
     margin-top: -2px;
 }
 
-.nav-bar li:hover, .upload-button:hover{
+.nav-bar .dropdown-list li:hover, .upload-button:hover{
     color: rgb(64, 214, 184);
     transition: all .25s ease-in-out;
     border-color: rgb(64, 214, 184);

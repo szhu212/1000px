@@ -2576,7 +2576,25 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
 
       if (currentVal !== "") {
         this.props.search(currentVal);
+      } else {
+        this.props.clearSearch();
       }
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick() {
+      this.setState({
+        search: ""
+      });
+      this.props.clearSearch();
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.setState({
+        search: ""
+      });
     }
   }, {
     key: "render",
@@ -2597,7 +2615,10 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
         onChange: this.handlechange,
         placeholder: "Search 1000Illusts"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "search-result-list"
+        onClick: this.handleSubmit
+      }, "Search"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-result-list",
+        onClick: this.handleClick
       }, searchResult));
     }
   }]);
@@ -2639,6 +2660,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     search: function search(searchInput) {
       return dispatch(Object(_actions_search_action__WEBPACK_IMPORTED_MODULE_2__["search"])(searchInput));
+    },
+    clearSearch: function clearSearch() {
+      return dispatch(Object(_actions_search_action__WEBPACK_IMPORTED_MODULE_2__["clearSearch"])());
     }
   };
 };
@@ -2695,7 +2719,8 @@ var SearchItem = /*#__PURE__*/function (_React$Component) {
       // debugger
       var _this$props$picture = this.props.picture,
           title = _this$props$picture.title,
-          photoUrl = _this$props$picture.photoUrl;
+          photoUrl = _this$props$picture.photoUrl,
+          authorName = _this$props$picture.authorName;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -2703,7 +2728,7 @@ var SearchItem = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: photoUrl,
         className: "search-item-img"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, title))));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "by ", authorName))));
     }
   }]);
 

@@ -8,18 +8,24 @@
     background-color: white;
     border-radius: 5px;
     overflow: hidden;
+    z-index: 6;
 }
 
 .search-item img {
     height: 30px; 
 }
 
+.search-item span {
+    margin-left: 5px;
+}
+
 .search-item li {
     display: flex;
-    padding: 2px 5px;
+    padding: 2px 10px;
 }
 
 .search-item li:hover {
     background-color: rgb(64, 214, 184);
-    transition: background-color .25s ease-in-out;
+    color: white;
+    transition: all .25s ease-in-out;
 }

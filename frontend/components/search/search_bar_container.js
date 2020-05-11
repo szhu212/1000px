@@ -1,6 +1,6 @@
 import { connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { search } from '../../actions/search_action';
+import { search, clearSearch } from '../../actions/search_action';
 import SearchBar from './search_bar'
 
 const mapStateToProps = (state, ownProps) => {
@@ -14,7 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    search: (searchInput) => dispatch(search(searchInput))
+    search: (searchInput) => dispatch(search(searchInput)),
+    clearSearch: () => dispatch(clearSearch())
 })
 
 export default withRouter ( connect(mapStateToProps,mapDispatchToProps)(SearchBar))

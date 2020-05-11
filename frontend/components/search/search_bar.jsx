@@ -1,5 +1,6 @@
 import React from 'react';
-import SearchItem from './search_item'
+import SearchItem from './search_item';
+
 
 class SearchBar extends React.Component {
 
@@ -17,7 +18,20 @@ class SearchBar extends React.Component {
         this.setState({ search: currentVal })
         if (currentVal !== ""){
             this.props.search(currentVal)
+        } else {
+            this.props.clearSearch()
         }
+
+    }
+
+    handleClick() {
+        this.setState({search: ""})
+        this.props.clearSearch()
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+        this.setState({search: ""})
 
     }
 
@@ -36,7 +50,10 @@ class SearchBar extends React.Component {
                     onChange={this.handlechange}
                     placeholder="Search 1000Illusts"
                 />
-                <div className="search-result-list">
+                <div onClick={this.handleSubmit}>
+                    Search
+                </div >
+                <div className="search-result-list" onClick={this.handleClick}>
                     {searchResult}
                 </div>
             </div>

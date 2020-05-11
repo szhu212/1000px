@@ -9,13 +9,14 @@ class SearchItem extends React.Component {
 
     render() {
         // debugger
-        const { title, photoUrl } = this.props.picture
+        const { title, photoUrl, authorName } = this.props.picture
         return (
             <div className="search-item">
                 <li>
                     <Link to={`/pictures/${this.props.picture.id}`}>
                         <img src={photoUrl} className="search-item-img"/>
                         <span>{title}</span>
+                        <span>by {authorName}</span>
                     </Link>
                 </li>
 
