@@ -10,6 +10,7 @@ import HomepageContainer from'./homepage/homepage_container';
 import PictureShowContainer from '../components/picture/picture_show_container';
 import PictureDiscoverContainer from './picture/picture_descover_container';
 import UserProfileContainer from './profile/user_profile_container';
+import SearchIndexContainer from './search/search_index_container'
 
 
 const App = () => (
@@ -26,6 +27,7 @@ const App = () => (
             <Route exact path="/discover" component={PictureDiscoverContainer} />
             <Route path="/pictures/:pictureId" component={PictureShowContainer} />
             <Route path="/users/:userId" component={UserProfileContainer} />
+            <Route path="/search/:search" component={SearchIndexContainer} />
             <Route path="*" component={NotFoundForm} />
         </Switch>
 

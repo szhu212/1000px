@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchItem from './search_item';
-
+import SearchIndex from './search_index';
 
 class SearchBar extends React.Component {
 
@@ -10,6 +10,8 @@ class SearchBar extends React.Component {
             search: ""
         }
         this.handlechange = this.handlechange.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handlechange(e) {
@@ -31,13 +33,25 @@ class SearchBar extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.setState({search: ""})
+        debugger
+        const address = this.state.search
+        // this.props.clearSearch()
+        this.setState({search: ""}, () =>this.props.history.push(`/search/${address}`))
+        // this.props.clearSearch()
+        // debugger
+        // this.props.history.push(`/search/${address}`)
+        // const pictures = this.props.pictures
+        // if (pictures.length>0) {
+        //     <SearchIndex
+        //         pictures = {pictures}
+        //         />
+        // }
 
     }
 
     render() {
         // debugger
-        const searchResult = this.props.pictures.length > 0 ? this.props.pictures.map(picture=> 
+        const searchResult = this.props.pictures.length > 0 && this.state.search !== "" ? this.props.pictures.map(picture=> 
             <SearchItem 
                 picture = {picture}
                 key = {picture.id} />
@@ -50,9 +64,10 @@ class SearchBar extends React.Component {
                     onChange={this.handlechange}
                     placeholder="Search 1000Illusts"
                 />
-                <div onClick={this.handleSubmit}>
+                <button onClick={this.handleSubmit}
+                className="search-button">
                     Search
-                </div >
+                </button >
                 <div className="search-result-list" onClick={this.handleClick}>
                     {searchResult}
                 </div>
