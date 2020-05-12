@@ -1784,7 +1784,9 @@ var PictureIndexItem = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "picture-img",
         src: picture.photoUrl
-      }));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "picture-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, picture.title)));
     }
   }]);
 

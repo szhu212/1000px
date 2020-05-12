@@ -19,11 +19,14 @@ class PictureIndexItem extends React.Component {
     render(){
         // debugger
         const { picture } = this.props
-
+        
         return(
            <div className="picture-item"
            onClick={this.handleClick}>
                  <img className="picture-img" src={picture.photoUrl}></img>
+                <div id='picture-title'>
+                    <p>{picture.title}</p>
+                </div>
            </div>
         )
     }
