@@ -336,7 +336,7 @@ var fetchUserPictures = function fetchUserPictures(userId) {
 /*!*******************************************!*\
   !*** ./frontend/actions/search_action.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_SEARCH, CLEAR_SEARCH, receiveSearch, clearSearch, search */
+/*! exports provided: RECEIVE_SEARCH, CLEAR_SEARCH, receiveSearch, clearSearch, search, submitSearch */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -346,7 +346,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSearch", function() { return receiveSearch; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearSearch", function() { return clearSearch; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "search", function() { return search; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "submitSearch", function() { return submitSearch; });
 /* harmony import */ var _util_search_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/search_util */ "./frontend/util/search_util.js");
+/* harmony import */ var _picture_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./picture_actions */ "./frontend/actions/picture_actions.js");
+
 
 var RECEIVE_SEARCH = 'RECEIVE_SEARCH';
 var CLEAR_SEARCH = 'CLEAR_SEARCH';
@@ -365,6 +368,13 @@ var search = function search(input) {
   return function (dispatch) {
     return _util_search_util__WEBPACK_IMPORTED_MODULE_0__["search"](input).then(function (search) {
       return dispatch(receiveSearch(search));
+    });
+  };
+};
+var submitSearch = function submitSearch(input) {
+  return function (dispatch) {
+    return _util_search_util__WEBPACK_IMPORTED_MODULE_0__["search"](input).then(function (search) {
+      return dispatch(Object(_picture_actions__WEBPACK_IMPORTED_MODULE_1__["receivePictures"])(search));
     });
   };
 };
@@ -2602,8 +2612,8 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this2 = this;
 
-      e.preventDefault();
-      debugger;
+      e.preventDefault(); // debugger
+
       var address = this.state.search; // this.props.clearSearch()
 
       this.setState({
@@ -2733,22 +2743,33 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
   _inherits(SearchIndex, _React$Component);
 
   function SearchIndex(props) {
+    var _this;
+
     _classCallCheck(this, SearchIndex);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SearchIndex).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SearchIndex).call(this, props));
+    _this.state = {
+      search: _this.props.match.params.searchKey
+    };
+    return _this;
   }
 
   _createClass(SearchIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
-      this.props.search(this.props.searchKey); // this.props.clearSearch()
+      this.props.submitSearch(this.props.searchKey);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      debugger;
+      if (this.props.searchKey !== this.props.match.params.search || prevProps.searchKey !== this.props.searchKey) this.props.submitSearch(this.props.searchKey); // this.props.clearSearch()
     }
   }, {
     key: "render",
     value: function render() {
-      // debugger
-      var display = this.props.pictures.map(function (picture) {
+      debugger;
+      var display = this.props.searchedPictures.map(function (picture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           picture: picture,
           key: picture.id
@@ -2787,18 +2808,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger
-  var pictures = Object.values(state.entities.searches);
+  debugger;
+  var searchedPictures = Object.values(state.entities.pictures);
   return {
     searchKey: ownProps.match.params.search,
-    pictures: pictures
+    searchedPictures: searchedPictures
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    search: function search(searchInput) {
-      return dispatch(Object(_actions_search_action__WEBPACK_IMPORTED_MODULE_2__["search"])(searchInput));
+    submitSearch: function submitSearch(searchInput) {
+      return dispatch(Object(_actions_search_action__WEBPACK_IMPORTED_MODULE_2__["submitSearch"])(searchInput));
     },
     clearSearch: function clearSearch() {
       return dispatch(Object(_actions_search_action__WEBPACK_IMPORTED_MODULE_2__["clearSearch"])());
@@ -2867,7 +2888,7 @@ var SearchItem = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: photoUrl,
         className: "search-item-img"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "by ", authorName))));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", title, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " by ", authorName))));
     }
   }]);
 

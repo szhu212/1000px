@@ -15,8 +15,8 @@ class SearchItem extends React.Component {
                 <li>
                     <Link to={`/pictures/${this.props.picture.id}`}>
                         <img src={photoUrl} className="search-item-img"/>
-                        <span>{title}</span>
-                        <span>by {authorName}</span>
+                        <span> {title} </span>
+                        <span> by {authorName}</span>
                     </Link>
                 </li>
 

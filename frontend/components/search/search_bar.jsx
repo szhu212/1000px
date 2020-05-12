@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        debugger
+        // debugger
         const address = this.state.search
         // this.props.clearSearch()
         this.setState({search: ""}, () =>this.props.history.push(`/search/${address}`))
