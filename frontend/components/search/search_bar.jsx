@@ -51,11 +51,14 @@ class SearchBar extends React.Component {
 
     render() {
         // debugger
-        const searchResult = this.props.pictures.length > 0 && this.state.search !== "" ? this.props.pictures.map(picture=> 
-            <SearchItem 
-                picture = {picture}
-                key = {picture.id} />
-            ) : null
+        const searchResult = this.props.pictures.length > 0 && this.state.search !== "" ? 
+        this.props.pictures.map(picture=> 
+         
+                <SearchItem 
+                    picture = {picture}
+                    key = {picture.id} />
+            
+        ) : null
             // debugger
         return(
             <div className="search-container">
@@ -66,7 +69,7 @@ class SearchBar extends React.Component {
                 />
                 <button onClick={this.handleSubmit}
                 className="search-button">
-                    Search
+                    <i className="fas fa-search fa-lg"></i>
                 </button >
                 <div className="search-result-list" onClick={this.handleClick}>
                     {searchResult}

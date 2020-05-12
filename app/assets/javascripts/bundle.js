@@ -2651,7 +2651,9 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit,
         className: "search-button"
-      }, "Search"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-search fa-lg"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-result-list",
         onClick: this.handleClick
       }, searchResult));
@@ -2686,6 +2688,12 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   // debugger
   var pictures = Object.values(state.entities.searches);
+
+  if (pictures.length > 10) {
+    pictures = pictures.slice(0, 10);
+  } // debugger
+
+
   return {
     pictures: pictures
   };
@@ -2762,13 +2770,13 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      debugger;
+      // debugger
       if (this.props.searchKey !== this.props.match.params.search || prevProps.searchKey !== this.props.searchKey) this.props.submitSearch(this.props.searchKey); // this.props.clearSearch()
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      // debugger
       var display = this.props.searchedPictures.map(function (picture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           picture: picture,
@@ -2808,7 +2816,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
+  // debugger
   var searchedPictures = Object.values(state.entities.pictures);
   return {
     searchKey: ownProps.match.params.search,

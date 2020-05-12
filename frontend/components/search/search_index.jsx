@@ -14,7 +14,7 @@ class SearchIndex extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        debugger
+        // debugger
         if (this.props.searchKey !== this.props.match.params.search || prevProps.searchKey !== this.props.searchKey)
         this.props.submitSearch(this.props.searchKey)
         // this.props.clearSearch()
@@ -23,7 +23,7 @@ class SearchIndex extends React.Component {
 
 
     render() {
-        debugger
+        // debugger
         const display = this.props.searchedPictures.map (picture => 
             <PictureIndexItem 
                 picture = {picture} 

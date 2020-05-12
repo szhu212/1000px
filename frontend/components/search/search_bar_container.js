@@ -6,7 +6,8 @@ import SearchBar from './search_bar'
 const mapStateToProps = (state, ownProps) => {
     // debugger
     let pictures = Object.values(state.entities.searches)
-
+    if(pictures.length > 10) { pictures = pictures.slice(0, 10) }
+    // debugger
     return {
         pictures,
     }

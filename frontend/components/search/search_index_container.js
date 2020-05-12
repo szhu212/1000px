@@ -4,7 +4,7 @@ import { search, submitSearch, clearSearch } from '../../actions/search_action';
 import SearchIndex from './search_index'
 
 const mapStateToProps = (state, ownProps) => {
-    debugger
+    // debugger
     let searchedPictures = Object.values(state.entities.pictures)
 
     return {
