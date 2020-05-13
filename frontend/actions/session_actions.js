@@ -36,11 +36,12 @@ export const logoutUser = () => dispatch => {
     .then(dispatch(logoutCurrentUser()));
 }
 
-export const signupUser = (formUser) => dispatch => (
+export const signupUser = (formUser) => dispatch => {
+    debugger
     APIUtil.signup(formUser)
-    .then(user => dispatch(receiveSessionCurrentUser(user)),
+    .then(user => dispatch(receiveCurrentUser(user)),
     err => (
         dispatch(receiveSessionErrors(err.responseJSON)))
     )
-)
+}
 

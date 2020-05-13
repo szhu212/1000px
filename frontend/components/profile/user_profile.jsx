@@ -36,13 +36,16 @@ class UserProfile extends React.Component {
         const username = this.props.username ? this.props.username : null
         const pictures = this.props.userPictures ? this.props.userPictures : null
         const display = (pictures && Object.keys(pictures).length > 0)? (
-            <div className="picture-index">
-                    {pictures.map(picture => (
-                         <PictureIndexItem 
-                            picture = {picture}
-                            key = {picture.id} 
-                        />
-                    ))}
+            <div>
+                <h2>Uploaded Illustrations</h2>
+                <div className="picture-index">
+                        {pictures.map(picture => (
+                            <PictureIndexItem 
+                                picture = {picture}
+                                key = {picture.id} 
+                            />
+                        ))}
+                </div>
             </div>
             ) 
             : null
@@ -59,7 +62,7 @@ class UserProfile extends React.Component {
             <div className="user-profile-page">
                 {userClick}
                 <p className="username">{username}</p>
-                <h2>Uploaded Illustrations</h2>
+                
                 {display}
             </div>
         )

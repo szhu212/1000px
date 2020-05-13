@@ -447,8 +447,9 @@ var logoutUser = function logoutUser() {
 };
 var signupUser = function signupUser(formUser) {
   return function (dispatch) {
-    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](formUser).then(function (user) {
-      return dispatch(receiveSessionCurrentUser(user));
+    debugger;
+    _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](formUser).then(function (user) {
+      return dispatch(receiveCurrentUser(user));
     }, function (err) {
       return dispatch(receiveSessionErrors(err.responseJSON));
     });
@@ -2414,14 +2415,14 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
       // debugger
       var username = this.props.username ? this.props.username : null;
       var pictures = this.props.userPictures ? this.props.userPictures : null;
-      var display = pictures && Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var display = pictures && Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Uploaded Illustrations"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-index"
       }, pictures.map(function (picture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           picture: picture,
           key: picture.id
         });
-      })) : null;
+      }))) : null;
       var profileUrl = this.props.avatarUrl ? this.props.avatarUrl : window.userpicURL;
       var userClick = this.props.userId === this.props.currentUesrId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: profileUrl,
@@ -2437,7 +2438,7 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
         className: "user-profile-page"
       }, userClick, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "username"
-      }, username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Uploaded Illustrations"), display);
+      }, username), display);
     }
   }]);
 

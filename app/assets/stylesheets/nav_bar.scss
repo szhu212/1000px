@@ -62,11 +62,12 @@
 
 .subnav-left > li {
     padding:10px 10px;
-    width: 150px;
+    // width: 150px;
 }
 
 .discover-button {
     margin-left:80px;
+    margin-right: 10px;
 }
 
 .upload-button{
@@ -79,7 +80,7 @@
 
 .circled-button {
     border-radius: 18%/50%;
-    border: 2px solid black;
+    border: 2.5px solid black;
     width: 70px;
     text-align: center;
     display: flex;
@@ -88,7 +89,7 @@
     margin-top: -2px;
 }
 
-.nav-bar .dropdown-list li:hover, .upload-button:hover{
+.nav-bar .dropdown-list li:hover, .upload-button:hover, .discover-button:hover{
     color: rgb(64, 214, 184);
     transition: all .25s ease-in-out;
     border-color: rgb(64, 214, 184);
