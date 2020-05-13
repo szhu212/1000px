@@ -32,7 +32,7 @@ class PictureDiscover extends React.Component  {
                 <div className="discover-text-container">
                    <div className="background-img-holder"></div>
                    <h2>Discover</h2>
-                   <p>Discover fresh inspiration daily. </p>
+                   <h3>Discover fresh inspiration daily. </h3>
                 </div>
                 <div className="picture-index-container">
                     {display}

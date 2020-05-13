@@ -54,6 +54,7 @@ class UserProfile extends React.Component {
             onClick={()=>this.props.openModal('uploadAvatar')}/> 
             :  <img src={profileUrl} 
             className="profile-img"/>
+
         return(
             <div className="user-profile-page">
                 {userClick}

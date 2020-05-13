@@ -2,7 +2,7 @@
     font-size: 40px;
 }
 
-.discover-page-container p {
+.discover-page-container h3 {
     font-size: 20px;
     color: rgb(105, 105, 105);
 }
@@ -27,4 +27,8 @@
     background-repeat: no-repeat;
     margin-left: 350px;
     top:-30px;
+}
+
+.discover-page-container #picture-title {
+    transform: translateY(6px);
 }

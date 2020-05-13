@@ -1594,7 +1594,7 @@ var PictureDiscover = /*#__PURE__*/function (_React$Component) {
         className: "discover-text-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-img-holder"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Discover fresh inspiration daily. ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Discover fresh inspiration daily. ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-index-container"
       }, display));
     }
@@ -2759,7 +2759,8 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SearchIndex).call(this, props));
     _this.state = {
-      search: _this.props.match.params.searchKey
+      search: _this.props.match.params.searchKey,
+      error: ""
     };
     return _this;
   }
@@ -2768,6 +2769,12 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.submitSearch(this.props.searchKey);
+
+      if (this.props.searchedPictures.length === 0) {
+        this.setState({
+          error: "We are sorry, there is no result matching ".concat(this.props.searchKey)
+        });
+      }
     }
   }, {
     key: "componentDidUpdate",
@@ -2779,16 +2786,31 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       // debugger
-      var display = this.props.searchedPictures.map(function (picture) {
+      var _this$props = this.props,
+          searchedPictures = _this$props.searchedPictures,
+          searchKey = _this$props.searchKey;
+      var display = searchedPictures.map(function (picture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           picture: picture,
           key: picture.id
         });
-      }); // this.props.clearSearch()
-
+      });
+      var numPics = searchedPictures.length;
+      var errDisplay = numPics === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-display-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-icon"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-search fa-lg fa-5x"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Oops!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No result matching \"".concat(searchKey, "\"")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please check the spelling or try modifying your search")) : null;
+      var searchMessage = numPics > 0 ? "".concat(numPics, " ").concat(searchKey, " illustrations") : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-index-page"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Search Result"), display);
+      }, errDisplay, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "search-message"
+      }, " ", searchMessage, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-result"
+      }, display));
     }
   }]);
 

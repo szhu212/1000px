@@ -30,4 +30,51 @@
     transition: all .25s ease-in-out;
 }
 
+.error-display-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 100px;
+    color: rgb(80, 79, 79);
+}
+
+.error-display-container p {
+    padding: 5px;
+    font-size: 15px;
+}
+
+.search-icon {
+    display: flex;
+    
+}
+
+.search-icon h1 {
+    font-size: 45px;
+    font-weight: 800;
+    margin-left: 10px;
+    margin-bottom: 25px;
+}
+
+.search-result {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+
+.search-result .picture-item {
+    max-width: 400px;
+}
+
+.search-index-page {
+    width: 95%;
+    margin: 0 auto;   
+}
+
+.search-message {
+    margin-left: 6px;
+    color: rgb(80, 79, 79);
+    margin-top: 30px;
+}
+
 
