@@ -1161,11 +1161,11 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
         }
       }, "Upload")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-button"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "non-circled-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/login"
-      }, "Log In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "Log In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "circled-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/signup"

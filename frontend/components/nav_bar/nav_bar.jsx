@@ -22,8 +22,8 @@ class NavBar extends React.Component {
             ):
             (   
                  <div className='session-button'>
-                     <li className="non-circled-button"><Link to="/login">Log In</Link></li>
-                     <li className="circled-button"><Link to="/signup">Sign Up</Link></li>
+                     <div className="non-circled-button"><Link to="/login">Log In</Link></div>
+                     <div className="circled-button"><Link to="/signup">Sign Up</Link></div>
                 </div>
             ) 
         // debugger
