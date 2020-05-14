@@ -10,11 +10,10 @@ class Footer extends React.Component {
         return (
             <div className="footer">
                 <div className="columns-cont">
-                    <div className="nav-column">
+                    {/* <div className="nav-column">
                           <h2>Navigate</h2>
-                          <div><Link to='/'>Home</Link></div>
                           <div><Link to='/discover'>Discover</Link></div>
-                    </div>
+                    </div> */}
 
                
                     <div className="dev-column">
@@ -25,7 +24,7 @@ class Footer extends React.Component {
                         </div>
                     </div>
                     <div className="soc-column">
-                         <h2>Socials</h2>
+                         <h2>Connect</h2>
                          <a href="https://github.com/szhu212">
                                 <i className="fab fa-github-square fa-2x"></i>
                             </a>

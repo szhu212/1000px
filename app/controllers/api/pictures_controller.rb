@@ -1,7 +1,8 @@
 class Api::PicturesController < ApplicationController
     
     def index
-        @pictures = Picture.all 
+        @pictures = Picture.all#.order('updated_at ASC') 
+        @pictures = @pictures.reverse
         render :index
     end
     
@@ -32,7 +33,8 @@ class Api::PicturesController < ApplicationController
     end
 
     def editor_index
-        @pictures = Picture.where(editors_choice: true)
+        @pictures = Picture.where(editors_choice: true)#.order('updated_at DESC') 
+        @pictures = @pictures.reverse
         render :editor_index
     end
 

@@ -11,7 +11,8 @@ class PictureShow extends React.Component {
             likeButton:"",
             likeCount:0,
             likedImg: <i className="fas fa-heart fa-2x liked-icon"></i>,
-            notLikedImg: <i className="far fa-heart fa-2x not-liked-icon"></i>
+            notLikedImg: <i className="far fa-heart fa-2x not-liked-icon"></i>,
+            error:""
         };
         this.handlePrevClick = this.handlePrevClick.bind(this);
         this.handleNextClick = this.handleNextClick.bind(this);
@@ -34,22 +35,15 @@ class PictureShow extends React.Component {
         if (Object.values(this.props.hashOfIds).length <= 1){
             this.props.fetchPictures()
         }
-        // if ()
-        // debugger
-        // if(this.props.picture && this.props.picture.likers !== this.prevProps.picture.likers) {
-        //     this.props.fetchPicture(this.props.pictureId)
-        // }
     }
 
     getKeyByValue(object, value) {
         return Object.keys(object).find(key => object[key] === value);
     }
 
-    handlePrevClick() {
+    handleNextClick() {
         const picId = parseInt(this.props.pictureId);
         const hashOfIds = this.props.hashOfIds;
-        // const firstIdx = hashOfIds[0]
-        // let prevId = parseInt(picId) - 1
         const picIdx = this.getKeyByValue(hashOfIds, picId)
         let prevIdx = picIdx - 1
         let prevId = hashOfIds[prevIdx]
@@ -61,65 +55,36 @@ class PictureShow extends React.Component {
             this.props.history.push(`/pictures/${prevId}`);
 
         }
-        // if (prevId < firstIdx) {
-        //     this.props.history.push(`/pictures/${picId}`)
-        //     this.setState({error:"This is the first illustration."})
-        // }
-        // else{
-        //     this.props.history.push(`/pictures/${prevId}`);
-
-        // }
-        
     }
 
-    handleNextClick(){
+    handlePrevClick(){
         const picId = parseInt(this.props.pictureId);
         const hashOfIds = this.props.hashOfIds;
         const picIdx = parseInt(this.getKeyByValue(hashOfIds, picId));
-        // const lastIdx = hashOfIds[Object.values(hashOfIds).length-1]
         let lastIdx = Object.values(hashOfIds).length - 1
-        // debugger
-        // let nextId = parseInt(picId) + 1
         let nextIdx = picIdx + 1
         let nextId = hashOfIds[nextIdx]
-        // debugger
         if (nextIdx > lastIdx) {
             this.props.history.push(`/pictures/${picId}`)
         }
         else{
             this.props.history.push(`/pictures/${nextId}`);
         }
-        // if (nextId > lastIdx) {
-        //     this.props.history.push(`/pictures/${picId}`)
-        // }
-        // else{
-        //     this.props.history.push(`/pictures/${nextId}`);
-        // }
     }
 
     handleLike(id){
         // debugger
-        // if (this.state.updateLike==="0"){
-        //     this.setState({updateLike: "1"})
-        // } else {
-        //     debugger
-        //     this.setState({updateLike: "0"})
-        // this.setState({updateLike : this.state.updateLike ? false: true})
-        // debugger
-        if (this.state.likeButton === this.state.likedImg ||( this.state.likeButton = "" && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId))){
+        if (this.state.likeButton === this.state.likedImg ||( this.state.likeButton === "" && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId))){
             this.setState({likeButton: this.state.notLikedImg, likeCount: this.state.likeCount - 1})
             this.props.unlikePicture(id)
         } else {
             this.setState({likeButton: this.state.likedImg, likeCount: this.state.likeCount + 1}) 
-            // debugger
-            // let like = {like: {liker_id: this.props.currentUserId, picture_id: this.props.pictureId}}
+            //  like = {like: {liker_id: this.props.currentUserId, picture_id: this.props.pictureId}}
             this.props.likePicture(id)
-        }
-       
+        }  
     }
 
     handleDelete(id){
-        // debugger
         this.props.deletePicture(id)
         this.props.history.push(`/users/${this.props.currentUserId}`)
     }
@@ -127,14 +92,10 @@ class PictureShow extends React.Component {
     render(){
         // debugger
         const {picture, pictureId, editorsChoice, numLikes, userAvatar, authorName, authorId, currentUserId} = this.props
-        // const authorName = this.props.picture? this.props.picture.authorName : null
         const authorLink = authorId? `${authorId}` : null
         const avatarDisplay = userAvatar? <img src={userAvatar}/> : <img src={window.userpicURL} />
         let editors = "No"
         if (editorsChoice){editors = "Yes"}
-        // const displayError = this.state.error.length > 0 ? this.state.error : null
-        // const numLikes = this.props.picture && this.props.picture.likers ? this.props.picture.likers.length : 0
-        // this.setState({likes: numlikes})
         let likeIcon 
         if(this.state.likeButton===""){
             likeIcon= this.props.picture && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId)? 
@@ -144,14 +105,12 @@ class PictureShow extends React.Component {
         } else {
             likeIcon = this.state.likeButton
         }
-        // this.setState({likeButton: likedIcon})
         let numLikesDisplay
         if(this.state.likeCount === ""){
             numLikesDisplay = numLikes
         } else {
             numLikesDisplay = parseInt(this.state.likeCount) + numLikes
         }
-        // debugger
         let deleteButton = currentUserId && currentUserId === authorId?
          <button className="delete-button"
          > Delete </button> 

@@ -13,10 +13,10 @@ export default (state = {}, action) => {
         case RECEIVE_USER_PICTURES:
             return Object.assign({}, state, action.userPictures)
         case REMOVE_PICTURE:
-            debugger
+            // debugger
             let nextState = Object.assign({}, state);
             delete nextState[action.pictureId]
-            debugger
+            // debugger
             return nextState;
         default:  
             return state;

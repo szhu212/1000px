@@ -31,7 +31,7 @@ class SearchIndex extends React.Component {
         // debugger
         const { searchedPictures, searchKey } = this.props
 
-        const display = searchedPictures.map (picture => 
+        const display = searchedPictures.reverse().map (picture => 
             <PictureIndexItem 
                 picture = {picture} 
                 key = {picture.id} />

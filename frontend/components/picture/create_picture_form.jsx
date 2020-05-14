@@ -45,12 +45,12 @@ class createPicture extends React.Component {
 
     handleFile(e){
         const file =  e.currentTarget.files[0];
-        debugger
+        // debugger
         const fileReader = new FileReader();
         fileReader.onloadend = () => {
             this.setState({pictureFile: file, photoUrl: fileReader.result});
         }
-        debugger
+        // debugger
         if(file){
             fileReader.readAsDataURL(file);
         }

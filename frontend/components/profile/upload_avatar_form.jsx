@@ -20,7 +20,7 @@ class uploadAvatarForm extends React.Component {
             const formData = new FormData();
             formData.append('user_id', this.props.currentUserId)
             formData.append('avatar', this.state.avatarFile)
-            debugger
+            // debugger
             this.props.createAvatar(formData)
             
             this.props.closeModal()

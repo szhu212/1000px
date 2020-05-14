@@ -14,12 +14,13 @@ class PictureDiscover extends React.Component  {
     render() {
         // debugger
         const pictures = this.props.pictures ? (this.props.pictures) : null
-        // const filtered_pictures = this.props.pictures ? pictures.sort((a,b)=> a.created_at - b.created_at) : null
+        // const filtered_pictures = this.props.pictures ? pictures.sort((a,b)=> a.updated_at - b.updated_at) : null
         const display = Object.keys(pictures).length > 0 ? (
             <div className="picture-index">
-                    {pictures.map(picture => (
+                    {pictures.reverse().map(picture => (
                          <PictureIndexItem 
                             picture = {picture}
+                            // form = {'discover'}
                             key = {picture.id} 
                         />
                     ))}

@@ -29,6 +29,7 @@ class UserProfile extends React.Component {
         if(this.props.userPictures && this.props.userPictures[0].author_id !== this.props.userId){
             this.props.fetchUserPictures(this.props.userId)
         }
+    
     }
 
     render() {
@@ -39,7 +40,7 @@ class UserProfile extends React.Component {
             <div>
                 <h2>Uploaded Illustrations</h2>
                 <div className="picture-index">
-                        {pictures.map(picture => (
+                        {pictures.reverse().map(picture => (
                             <PictureIndexItem 
                                 picture = {picture}
                                 key = {picture.id} 

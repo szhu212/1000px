@@ -44,7 +44,7 @@ class NavBar extends React.Component {
        
 
         return(
-            <header className="nav-bar">
+            <header className="nav-bar" >
                 <div className="nav-left">
                         <Link to="/">
                             <img className="logo-mint" src={window.logo_mintURL}/>

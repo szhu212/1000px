@@ -456,7 +456,7 @@ var logoutUser = function logoutUser() {
 };
 var signupUser = function signupUser(formUser) {
   return function (dispatch) {
-    debugger;
+    // debugger
     _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](formUser).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (err) {
@@ -998,16 +998,10 @@ var Footer = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "columns-cont"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "nav-column"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Navigate"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/"
-      }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/discover"
-      }, "Discover"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dev-column"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Developer"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Skylar Zhu")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "soc-column"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Socials"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Connect"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://github.com/szhu212"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fab fa-github-square fa-2x"
@@ -1042,34 +1036,83 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _picture_picture_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../picture/picture_index */ "./frontend/components/picture/picture_index.jsx");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../footer */ "./frontend/components/footer.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
 
 
-var Homepage = function Homepage(_ref) {
-  var pictures = _ref.pictures,
-      editorsChoice = _ref.editorsChoice,
-      fetchPictures = _ref.fetchPictures;
-  // debugger
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "Homepage"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "homepage-pic-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "greeting"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Discover and share the world\u2019s best illustrations."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Get inspired with incredible illustrations from diverse styles and genres around the world. "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "index-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "medal-icon-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "medal-icon"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Editors' Choice"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Discover fresh inspiration daily. Your illustrations could even be featured in our handpicked Editors\u2019 Choice Gallery."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_picture_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    pictures: pictures,
-    fetchPictures: fetchPictures // editorsChoice={editorsChoice}
 
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_3__["default"], null));
-};
+var Homepage = /*#__PURE__*/function (_React$Component) {
+  _inherits(Homepage, _React$Component);
+
+  function Homepage(props) {
+    var _this;
+
+    _classCallCheck(this, Homepage);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Homepage).call(this, props));
+    _this.discoverFunction = _this.discoverFunction.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Homepage, [{
+    key: "discoverFunction",
+    value: function discoverFunction() {
+      // document.body.scrollTop = 0; // For Safari
+      // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      this.props.history.push('/discover');
+    } // debugger
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          pictures = _this$props.pictures,
+          fetchPictures = _this$props.fetchPictures;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "Homepage"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "homepage-pic-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "greeting"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Discover and share the world\u2019s best illustrations."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Get inspired with incredible illustrations from diverse styles and genres around the world. "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "index-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "medal-icon-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "medal-icon"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Editors' Choice"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Discover fresh inspiration daily. Your illustrations could even be featured in our handpicked Editors\u2019 Choice Gallery."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_picture_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        pictures: pictures,
+        fetchPictures: fetchPictures // editorsChoice={editorsChoice}
+
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.discoverFunction,
+        className: "redirect-to-discover"
+      }, "Discover all illustrations"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+    }
+  }]);
+
+  return Homepage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Homepage);
 
@@ -1481,8 +1524,8 @@ var createPicture = /*#__PURE__*/function (_React$Component) {
     value: function handleFile(e) {
       var _this4 = this;
 
-      var file = e.currentTarget.files[0];
-      debugger;
+      var file = e.currentTarget.files[0]; // debugger
+
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
@@ -1490,9 +1533,8 @@ var createPicture = /*#__PURE__*/function (_React$Component) {
           pictureFile: file,
           photoUrl: fileReader.result
         });
-      };
+      }; // debugger
 
-      debugger;
 
       if (file) {
         fileReader.readAsDataURL(file);
@@ -1670,13 +1712,14 @@ var PictureDiscover = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       // debugger
-      var pictures = this.props.pictures ? this.props.pictures : null; // const filtered_pictures = this.props.pictures ? pictures.sort((a,b)=> a.created_at - b.created_at) : null
+      var pictures = this.props.pictures ? this.props.pictures : null; // const filtered_pictures = this.props.pictures ? pictures.sort((a,b)=> a.updated_at - b.updated_at) : null
 
       var display = Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-index"
-      }, pictures.map(function (picture) {
+      }, pictures.reverse().map(function (picture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          picture: picture,
+          picture: picture // form = {'discover'}
+          ,
           key: picture.id
         });
       })) : null;
@@ -1791,7 +1834,7 @@ var PictureIndex = /*#__PURE__*/function (_React$Component) {
       var filtered_pictures = this.props.pictures ? pictures : null;
       var display = Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-index"
-      }, filtered_pictures.map(function (picture) {
+      }, filtered_pictures.reverse().map(function (picture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           picture: picture,
           key: picture.id
@@ -1939,7 +1982,8 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
       }),
       notLikedImg: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "far fa-heart fa-2x not-liked-icon"
-      })
+      }),
+      error: ""
     };
     _this.handlePrevClick = _this.handlePrevClick.bind(_assertThisInitialized(_this));
     _this.handleNextClick = _this.handleNextClick.bind(_assertThisInitialized(_this));
@@ -1965,12 +2009,7 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
 
       if (Object.values(this.props.hashOfIds).length <= 1) {
         this.props.fetchPictures();
-      } // if ()
-      // debugger
-      // if(this.props.picture && this.props.picture.likers !== this.prevProps.picture.likers) {
-      //     this.props.fetchPicture(this.props.pictureId)
-      // }
-
+      }
     }
   }, {
     key: "getKeyByValue",
@@ -1980,12 +2019,10 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "handlePrevClick",
-    value: function handlePrevClick() {
+    key: "handleNextClick",
+    value: function handleNextClick() {
       var picId = parseInt(this.props.pictureId);
-      var hashOfIds = this.props.hashOfIds; // const firstIdx = hashOfIds[0]
-      // let prevId = parseInt(picId) - 1
-
+      var hashOfIds = this.props.hashOfIds;
       var picIdx = this.getKeyByValue(hashOfIds, picId);
       var prevIdx = picIdx - 1;
       var prevId = hashOfIds[prevIdx];
@@ -1997,52 +2034,29 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
         });
       } else {
         this.props.history.push("/pictures/".concat(prevId));
-      } // if (prevId < firstIdx) {
-      //     this.props.history.push(`/pictures/${picId}`)
-      //     this.setState({error:"This is the first illustration."})
-      // }
-      // else{
-      //     this.props.history.push(`/pictures/${prevId}`);
-      // }
-
+      }
     }
   }, {
-    key: "handleNextClick",
-    value: function handleNextClick() {
+    key: "handlePrevClick",
+    value: function handlePrevClick() {
       var picId = parseInt(this.props.pictureId);
       var hashOfIds = this.props.hashOfIds;
-      var picIdx = parseInt(this.getKeyByValue(hashOfIds, picId)); // const lastIdx = hashOfIds[Object.values(hashOfIds).length-1]
-
-      var lastIdx = Object.values(hashOfIds).length - 1; // debugger
-      // let nextId = parseInt(picId) + 1
-
+      var picIdx = parseInt(this.getKeyByValue(hashOfIds, picId));
+      var lastIdx = Object.values(hashOfIds).length - 1;
       var nextIdx = picIdx + 1;
-      var nextId = hashOfIds[nextIdx]; // debugger
+      var nextId = hashOfIds[nextIdx];
 
       if (nextIdx > lastIdx) {
         this.props.history.push("/pictures/".concat(picId));
       } else {
         this.props.history.push("/pictures/".concat(nextId));
-      } // if (nextId > lastIdx) {
-      //     this.props.history.push(`/pictures/${picId}`)
-      // }
-      // else{
-      //     this.props.history.push(`/pictures/${nextId}`);
-      // }
-
+      }
     }
   }, {
     key: "handleLike",
     value: function handleLike(id) {
       // debugger
-      // if (this.state.updateLike==="0"){
-      //     this.setState({updateLike: "1"})
-      // } else {
-      //     debugger
-      //     this.setState({updateLike: "0"})
-      // this.setState({updateLike : this.state.updateLike ? false: true})
-      // debugger
-      if (this.state.likeButton === this.state.likedImg || (this.state.likeButton = "" && false && false)) {
+      if (this.state.likeButton === this.state.likedImg || this.state.likeButton === "" && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId)) {
         this.setState({
           likeButton: this.state.notLikedImg,
           likeCount: this.state.likeCount - 1
@@ -2052,8 +2066,7 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
         this.setState({
           likeButton: this.state.likedImg,
           likeCount: this.state.likeCount + 1
-        }); // debugger
-        // let like = {like: {liker_id: this.props.currentUserId, picture_id: this.props.pictureId}}
+        }); //  like = {like: {liker_id: this.props.currentUserId, picture_id: this.props.pictureId}}
 
         this.props.likePicture(id);
       }
@@ -2061,7 +2074,6 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDelete",
     value: function handleDelete(id) {
-      // debugger
       this.props.deletePicture(id);
       this.props.history.push("/users/".concat(this.props.currentUserId));
     }
@@ -2079,8 +2091,7 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
           userAvatar = _this$props.userAvatar,
           authorName = _this$props.authorName,
           authorId = _this$props.authorId,
-          currentUserId = _this$props.currentUserId; // const authorName = this.props.picture? this.props.picture.authorName : null
-
+          currentUserId = _this$props.currentUserId;
       var authorLink = authorId ? "".concat(authorId) : null;
       var avatarDisplay = userAvatar ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: userAvatar
@@ -2091,10 +2102,7 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
 
       if (editorsChoice) {
         editors = "Yes";
-      } // const displayError = this.state.error.length > 0 ? this.state.error : null
-      // const numLikes = this.props.picture && this.props.picture.likers ? this.props.picture.likers.length : 0
-      // this.setState({likes: numlikes})
-
+      }
 
       var likeIcon;
 
@@ -2102,8 +2110,7 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
         likeIcon = this.props.picture && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId) ? this.state.likedImg : this.state.notLikedImg;
       } else {
         likeIcon = this.state.likeButton;
-      } // this.setState({likeButton: likedIcon})
-
+      }
 
       var numLikesDisplay;
 
@@ -2111,8 +2118,7 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
         numLikesDisplay = numLikes;
       } else {
         numLikesDisplay = parseInt(this.state.likeCount) + numLikes;
-      } // debugger
-
+      }
 
       var deleteButton = currentUserId && currentUserId === authorId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "delete-button"
@@ -2412,8 +2418,8 @@ var uploadAvatarForm = /*#__PURE__*/function (_React$Component) {
         });
         var formData = new FormData();
         formData.append('user_id', this.props.currentUserId);
-        formData.append('avatar', this.state.avatarFile);
-        debugger;
+        formData.append('avatar', this.state.avatarFile); // debugger
+
         this.props.createAvatar(formData);
         this.props.closeModal();
       }
@@ -2554,7 +2560,7 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
       var pictures = this.props.userPictures ? this.props.userPictures : null;
       var display = pictures && Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Uploaded Illustrations"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-index"
-      }, pictures.map(function (picture) {
+      }, pictures.reverse().map(function (picture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           picture: picture,
           key: picture.id
@@ -2927,7 +2933,7 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           searchedPictures = _this$props.searchedPictures,
           searchKey = _this$props.searchKey;
-      var display = searchedPictures.map(function (picture) {
+      var display = searchedPictures.reverse().map(function (picture) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_picture_picture_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           picture: picture,
           key: picture.id
@@ -3251,10 +3257,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Object.assign({}, state, action.userPictures);
 
     case _actions_picture_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PICTURE"]:
-      debugger;
+      // debugger
       var nextState = Object.assign({}, state);
-      delete nextState[action.pictureId];
-      debugger;
+      delete nextState[action.pictureId]; // debugger
+
       return nextState;
 
     default:

@@ -19,7 +19,7 @@ class PictureIndex extends React.Component  {
         const filtered_pictures = this.props.pictures ? pictures : null
         const display = Object.keys(pictures).length > 0 ? (
             <div className="picture-index">
-                    {filtered_pictures.map(picture => (
+                    {filtered_pictures.reverse().map(picture => (
                          <PictureIndexItem 
                             picture = {picture}
                             key = {picture.id} 
