@@ -200,10 +200,13 @@
 }
 
 .search-button .fa-search {
-    margin-right: 10px;
+    margin-right: 5px;
     color: rgb(80, 80, 80);
     flex-grow: 0;
-      
+    border: 1px solid lightgray;
+    padding: 7px 4px;
+    border-radius: 50%;
+    background-color: rgb(243, 243, 243);
 }
 
 .session-button {
