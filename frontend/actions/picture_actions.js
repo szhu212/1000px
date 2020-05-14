@@ -21,10 +21,14 @@ export const receivePicture = (picture) => ({
     picture
 })
 
-export const removePicture = (pictureId) => ({
-    type: REMOVE_PICTURE,
-    pictureId
-})
+export const removePicture = (pictureId) => {
+debugger
+    return{
+        type: REMOVE_PICTURE,
+        pictureId
+    }
+        
+}
 
 export const receivePictureErrors = (errors) => {
     // debugger
@@ -74,6 +78,11 @@ export const deletePicture = (picId) => dispatch => (
 
 export const fetchUserPictures = (userId) => dispatch => {
     PictureUtil.fetchUserPictures(userId)
+    .then(pictures => dispatch(receivePictures(pictures)))
+}
+
+export const fetchEditorPictures = () => dispatch => {
+    PictureUtil.fetchEditorPictures()
     .then(pictures => dispatch(receivePictures(pictures)))
 }
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import  {fetchPicture, fetchPictures} from '../../actions/picture_actions';
+import  { fetchPicture, fetchPictures, deletePicture } from '../../actions/picture_actions';
 import { likePicture, unlikePicture } from '../../actions/like_actions'
 import PictureShow from './picture_show';
 
@@ -36,7 +36,10 @@ const mapDispatchToProps = dispatch => ({
     fetchPicture: (id) => dispatch(fetchPicture(id)),
     fetchPictures: () => dispatch(fetchPictures()),
     likePicture: (id) => dispatch(likePicture(id)),
-    unlikePicture: (id) => dispatch(unlikePicture(id))
+    unlikePicture: (id) => dispatch(unlikePicture(id)),
+    deletePicture: (id) => dispatch(deletePicture(id)),
+    openModal: (modal) => dispatch(openModal(modal)),
+    closeModal: () => dispatch(closeModal()),
 });
   
 export default connect(

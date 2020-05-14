@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom"
-import PictureIndex from "../picture/picture_index"
+import { Link } from "react-router-dom";
+import PictureIndex from "../picture/picture_index";
+import Footer from "../footer";
 
 const Homepage = ({pictures, editorsChoice, fetchPictures}) => {
     // debugger
@@ -24,6 +25,7 @@ const Homepage = ({pictures, editorsChoice, fetchPictures}) => {
                 // editorsChoice={editorsChoice}
              />
         </div>
+        <Footer />
     </div>)
 }
 

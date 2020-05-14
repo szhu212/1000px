@@ -8,6 +8,15 @@ export const fetchPictures = () => {
     )
 }
 
+export const fetchEditorPictures = () => {
+    return (
+        $.ajax({
+            method:"GET",
+            url:`/api/editorpictures`
+            })
+    )
+}
+
 export const fetchPicture = (picId) => {
     // debugger
     return (
@@ -29,6 +38,7 @@ export const createPicture = (formData) => {
         processData: false
         })
 )}
+
 
 export const updatePicture = (picture) => (
     $.ajax({
@@ -53,5 +63,6 @@ export const fetchUserPictures =(userId) => {
             })
     )
 }
+
 
 

@@ -15,8 +15,9 @@ class PictureShow extends React.Component {
         };
         this.handlePrevClick = this.handlePrevClick.bind(this);
         this.handleNextClick = this.handleNextClick.bind(this);
-        this.getKeyByValue = this.getKeyByValue.bind(this)
-        this.handleLike = this.handleLike.bind(this)
+        this.getKeyByValue = this.getKeyByValue.bind(this);
+        this.handleLike = this.handleLike.bind(this);
+        this.handleDelete = this.handleDelete.bind(this)
     }
  
     componentDidMount(){
@@ -117,9 +118,15 @@ class PictureShow extends React.Component {
        
     }
 
+    handleDelete(id){
+        // debugger
+        this.props.deletePicture(id)
+        this.props.history.push(`/users/${this.props.currentUserId}`)
+    }
+
     render(){
         // debugger
-        const {picture, pictureId, editorsChoice, numLikes, userAvatar, authorName, authorId} = this.props
+        const {picture, pictureId, editorsChoice, numLikes, userAvatar, authorName, authorId, currentUserId} = this.props
         // const authorName = this.props.picture? this.props.picture.authorName : null
         const authorLink = authorId? `${authorId}` : null
         const avatarDisplay = userAvatar? <img src={userAvatar}/> : <img src={window.userpicURL} />
@@ -144,6 +151,11 @@ class PictureShow extends React.Component {
         } else {
             numLikesDisplay = parseInt(this.state.likeCount) + numLikes
         }
+        // debugger
+        let deleteButton = currentUserId && currentUserId === authorId?
+         <button className="delete-button"
+         > Delete </button> 
+         : null
 
         
     return(
@@ -172,6 +184,10 @@ class PictureShow extends React.Component {
                          </div>
                         <div className="num-likes">
                              {numLikesDisplay}
+                        </div>
+                        <div className="delete-holder"
+                        onClick={()=>this.handleDelete(pictureId)}>
+                          {deleteButton}
                         </div>
                      </div>
                      <div className="title-and-author-info">

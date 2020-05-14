@@ -22,13 +22,18 @@ class Api::PicturesController < ApplicationController
     def destroy 
         @picture = Picture.find(params[:id])
         @picture.destroy
-        rebder :show
+        render :show
     end
 
     def user_picrure_index
         # debugger
         @pictures = Picture.where(author_id:params[:user_id])
         render :user_picture_index
+    end
+
+    def editor_index
+        @pictures = Picture.where(editors_choice: true)
+        render :editor_index
     end
 
     private

@@ -13,7 +13,7 @@ class PictureDiscover extends React.Component  {
 
     render() {
         // debugger
-        const pictures = this.props.pictures ? (this.props.pictures.reverse()) : null
+        const pictures = this.props.pictures ? (this.props.pictures) : null
         // const filtered_pictures = this.props.pictures ? pictures.sort((a,b)=> a.created_at - b.created_at) : null
         const display = Object.keys(pictures).length > 0 ? (
             <div className="picture-index">

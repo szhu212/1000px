@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :pictures, only: [:show, :index, :create, :destroy]
     resources :likes, only: [:create, :destroy]
     resources :searches, only: [:index]
+    get '/editorpictures', to: 'pictures#editor_index'
   end
  
   root to: 'static_pages#root'

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import  {fetchPictures} from '../../actions/picture_actions';
+import  {fetchEditorPictures} from '../../actions/picture_actions';
 import Homepage from './homepage';
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
   };
   
 const mapDispatchToProps = dispatch => ({
-    fetchPictures: () => dispatch(fetchPictures())
+    fetchPictures: () => dispatch(fetchEditorPictures())
 });
   
 export default connect(

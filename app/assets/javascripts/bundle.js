@@ -217,7 +217,7 @@ var closeModal = function closeModal() {
 /*!*********************************************!*\
   !*** ./frontend/actions/picture_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_PICTURES, RECEIVE_PICTURE, REMOVE_PICTURE, RECEIVE_PICTURE_ERRORS, CLEAR_ERRORS, RECEIVE_USER_PICTURES, receivePictures, receivePicture, removePicture, receivePictureErrors, clearErrors, receiveUserPictures, fetchPictures, fetchPicture, createPicture, updatePicture, deletePicture, fetchUserPictures */
+/*! exports provided: RECEIVE_PICTURES, RECEIVE_PICTURE, REMOVE_PICTURE, RECEIVE_PICTURE_ERRORS, CLEAR_ERRORS, RECEIVE_USER_PICTURES, receivePictures, receivePicture, removePicture, receivePictureErrors, clearErrors, receiveUserPictures, fetchPictures, fetchPicture, createPicture, updatePicture, deletePicture, fetchUserPictures, fetchEditorPictures */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -240,6 +240,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePicture", function() { return updatePicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePicture", function() { return deletePicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserPictures", function() { return fetchUserPictures; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchEditorPictures", function() { return fetchEditorPictures; });
 /* harmony import */ var _util_picture_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/picture_util */ "./frontend/util/picture_util.js");
 
 var RECEIVE_PICTURES = "RECEIVE_PICTURES";
@@ -262,6 +263,7 @@ var receivePicture = function receivePicture(picture) {
   };
 };
 var removePicture = function removePicture(pictureId) {
+  debugger;
   return {
     type: REMOVE_PICTURE,
     pictureId: pictureId
@@ -325,6 +327,13 @@ var deletePicture = function deletePicture(picId) {
 var fetchUserPictures = function fetchUserPictures(userId) {
   return function (dispatch) {
     _util_picture_util__WEBPACK_IMPORTED_MODULE_0__["fetchUserPictures"](userId).then(function (pictures) {
+      return dispatch(receivePictures(pictures));
+    });
+  };
+};
+var fetchEditorPictures = function fetchEditorPictures() {
+  return function (dispatch) {
+    _util_picture_util__WEBPACK_IMPORTED_MODULE_0__["fetchEditorPictures"]().then(function (pictures) {
       return dispatch(receivePictures(pictures));
     });
   };
@@ -939,6 +948,86 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 
 /***/ }),
 
+/***/ "./frontend/components/footer.jsx":
+/*!****************************************!*\
+  !*** ./frontend/components/footer.jsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Footer = /*#__PURE__*/function (_React$Component) {
+  _inherits(Footer, _React$Component);
+
+  function Footer() {
+    _classCallCheck(this, Footer);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Footer).apply(this, arguments));
+  }
+
+  _createClass(Footer, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "columns-cont"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "nav-column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Navigate"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/"
+      }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/discover"
+      }, "Discover"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dev-column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Developer"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Skylar Zhu")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "soc-column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Socials"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://github.com/szhu212"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fab fa-github-square fa-2x"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.linkedin.com/in/skylar-wenyu-zhu-98aa00108/"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fab fa-linkedin fa-2x"
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "copyright"
+      }, "\xA9 2020 100Illusts"));
+    }
+  }]);
+
+  return Footer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
+
+/***/ }),
+
 /***/ "./frontend/components/homepage/homepage.jsx":
 /*!***************************************************!*\
   !*** ./frontend/components/homepage/homepage.jsx ***!
@@ -952,6 +1041,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _picture_picture_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../picture/picture_index */ "./frontend/components/picture/picture_index.jsx");
+/* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../footer */ "./frontend/components/footer.jsx");
+
 
 
 
@@ -977,7 +1068,7 @@ var Homepage = function Homepage(_ref) {
     pictures: pictures,
     fetchPictures: fetchPictures // editorsChoice={editorsChoice}
 
-  })));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Homepage);
@@ -1012,7 +1103,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchPictures: function fetchPictures() {
-      return dispatch(Object(_actions_picture_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPictures"])());
+      return dispatch(Object(_actions_picture_actions__WEBPACK_IMPORTED_MODULE_1__["fetchEditorPictures"])());
     }
   };
 };
@@ -1370,7 +1461,7 @@ var createPicture = /*#__PURE__*/function (_React$Component) {
         formData.append('picture[picture]', this.state.pictureFile); // debugger
 
         this.props.createPicture(formData).then(function () {
-          return _this2.props.history.push("/discover");
+          return _this2.props.history.push("/users/".concat(_this2.props.currentUser.id));
         }); // debugger
 
         this.props.closeModal();
@@ -1579,7 +1670,7 @@ var PictureDiscover = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       // debugger
-      var pictures = this.props.pictures ? this.props.pictures.reverse() : null; // const filtered_pictures = this.props.pictures ? pictures.sort((a,b)=> a.created_at - b.created_at) : null
+      var pictures = this.props.pictures ? this.props.pictures : null; // const filtered_pictures = this.props.pictures ? pictures.sort((a,b)=> a.created_at - b.created_at) : null
 
       var display = Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-index"
@@ -1695,10 +1786,9 @@ var PictureIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var pictures = this.props.pictures ? this.props.pictures : null;
-      var filtered_pictures = this.props.pictures ? pictures.filter(function (picture) {
-        return picture.editors_choice === true;
-      }) : null;
+      var pictures = this.props.pictures ? this.props.pictures : null; // const filtered_pictures = this.props.pictures ? pictures.filter(picture=> picture.editors_choice === true) : null
+
+      var filtered_pictures = this.props.pictures ? pictures : null;
       var display = Object.keys(pictures).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-index"
       }, filtered_pictures.map(function (picture) {
@@ -1855,6 +1945,7 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
     _this.handleNextClick = _this.handleNextClick.bind(_assertThisInitialized(_this));
     _this.getKeyByValue = _this.getKeyByValue.bind(_assertThisInitialized(_this));
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1968,6 +2059,13 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleDelete",
+    value: function handleDelete(id) {
+      // debugger
+      this.props.deletePicture(id);
+      this.props.history.push("/users/".concat(this.props.currentUserId));
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -1980,7 +2078,8 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
           numLikes = _this$props.numLikes,
           userAvatar = _this$props.userAvatar,
           authorName = _this$props.authorName,
-          authorId = _this$props.authorId; // const authorName = this.props.picture? this.props.picture.authorName : null
+          authorId = _this$props.authorId,
+          currentUserId = _this$props.currentUserId; // const authorName = this.props.picture? this.props.picture.authorName : null
 
       var authorLink = authorId ? "".concat(authorId) : null;
       var avatarDisplay = userAvatar ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -2012,8 +2111,12 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
         numLikesDisplay = numLikes;
       } else {
         numLikesDisplay = parseInt(this.state.likeCount) + numLikes;
-      }
+      } // debugger
 
+
+      var deleteButton = currentUserId && currentUserId === authorId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "delete-button"
+      }, " Delete ") : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-show-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2047,7 +2150,12 @@ var PictureShow = /*#__PURE__*/function (_React$Component) {
         }
       }, likeIcon), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "num-likes"
-      }, numLikesDisplay)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, numLikesDisplay), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-holder",
+        onClick: function onClick() {
+          return _this2.handleDelete(pictureId);
+        }
+      }, deleteButton)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "title-and-author-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture-title-and-author"
@@ -2148,7 +2256,36 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     unlikePicture: function unlikePicture(id) {
       return dispatch(Object(_actions_like_actions__WEBPACK_IMPORTED_MODULE_2__["unlikePicture"])(id));
-    }
+    },
+    deletePicture: function deletePicture(id) {
+      return dispatch(Object(_actions_picture_actions__WEBPACK_IMPORTED_MODULE_1__["deletePicture"])(id));
+    },
+    openModal: function (_openModal) {
+      function openModal(_x) {
+        return _openModal.apply(this, arguments);
+      }
+
+      openModal.toString = function () {
+        return _openModal.toString();
+      };
+
+      return openModal;
+    }(function (modal) {
+      return dispatch(openModal(modal));
+    }),
+    closeModal: function (_closeModal) {
+      function closeModal() {
+        return _closeModal.apply(this, arguments);
+      }
+
+      closeModal.toString = function () {
+        return _closeModal.toString();
+      };
+
+      return closeModal;
+    }(function () {
+      return dispatch(closeModal());
+    })
   };
 };
 
@@ -3114,8 +3251,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Object.assign({}, state, action.userPictures);
 
     case _actions_picture_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PICTURE"]:
+      debugger;
       var nextState = Object.assign({}, state);
       delete nextState[action.pictureId];
+      debugger;
       return nextState;
 
     default:
@@ -3371,12 +3510,13 @@ var unlikePicture = function unlikePicture(pictureId) {
 /*!***************************************!*\
   !*** ./frontend/util/picture_util.js ***!
   \***************************************/
-/*! exports provided: fetchPictures, fetchPicture, createPicture, updatePicture, deletePicture, fetchUserPictures */
+/*! exports provided: fetchPictures, fetchEditorPictures, fetchPicture, createPicture, updatePicture, deletePicture, fetchUserPictures */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPictures", function() { return fetchPictures; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchEditorPictures", function() { return fetchEditorPictures; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPicture", function() { return fetchPicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPicture", function() { return createPicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePicture", function() { return updatePicture; });
@@ -3387,6 +3527,12 @@ var fetchPictures = function fetchPictures() {
   return $.ajax({
     method: "GET",
     url: "/api/pictures"
+  });
+};
+var fetchEditorPictures = function fetchEditorPictures() {
+  return $.ajax({
+    method: "GET",
+    url: "/api/editorpictures"
   });
 };
 var fetchPicture = function fetchPicture(picId) {
