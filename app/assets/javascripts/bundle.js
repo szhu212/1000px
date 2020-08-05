@@ -1009,6 +1009,10 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         href: "https://www.linkedin.com/in/skylar-wenyu-zhu-98aa00108/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fab fa-linkedin fa-2x"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://szhu212.github.io/personal_site/"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "fas fa-portrait fa-2x"
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "copyright"
       }, "\xA9 2020 100Illusts"));
