@@ -28,6 +28,9 @@
 
 .soc-column {
     margin-top: 20px;
+    width: 140px;
+    text-align: center;
+    // display: flex;
 }
 
 .copyright {
@@ -37,14 +40,20 @@
 
 .footer h2 {
     font-size: 20px;
-     margin-bottom: 10px;
-    font-weight: 600;
-   
+    margin-bottom: 10px;
+    font-weight: 600;   
 }
 
-.soc-column i {
-    margin-right: 10px;
+.soc-icon-holder {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
 }
+
+// .soc-column i {
+//     margin-right: 20px;
+// }
 // .dev-column {
 //     display: flex;
 //     flex-direction: column;

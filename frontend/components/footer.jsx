@@ -25,15 +25,17 @@ class Footer extends React.Component {
                     </div>
                     <div className="soc-column">
                          <h2>Connect</h2>
-                            <a href="https://github.com/szhu212">
-                                <i className="fab fa-github-square fa-2x"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/skylar-wenyu-zhu-98aa00108/">
-                                <i className="fab fa-linkedin fa-2x"></i>
-                            </a>
-                            <a href="https://szhu212.github.io/personal_site/">
-                                 <i class="fas fa-portrait fa-2x"></i>
-                            </a>
+                            <div className="soc-icon-holder">
+                                <a href="https://github.com/szhu212">
+                                    <i className="fab fa-github-square fa-2x"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/skylar-wenyu-zhu-98aa00108/">
+                                    <i className="fab fa-linkedin fa-2x"></i>
+                                </a>
+                                <a href="https://szhu212.github.io/personal_site/">
+                                    <i class="fas fa-portrait fa-2x"></i>
+                                </a>
+                            </div>
                     </div>
                 </div>
                 <div className="copyright">© 2020 100Illusts</div>
