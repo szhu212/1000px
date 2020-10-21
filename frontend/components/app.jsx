@@ -10,8 +10,13 @@ import HomepageContainer from'./homepage/homepage_container';
 import PictureShowContainer from '../components/picture/picture_show_container';
 import PictureDiscoverContainer from './picture/picture_descover_container';
 import UserProfileContainer from './profile/user_profile_container';
-import SearchIndexContainer from './search/search_index_container'
+import SearchIndexContainer from './search/search_index_container';
+import ReactGA from 'react-ga';
 
+function initializeReactGA() {
+    ReactGA.initialize('UA-123791717-1');
+    ReactGA.pageview('/homepage');
+}
 
 const App = () => (
     <div>

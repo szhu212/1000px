@@ -73,13 +73,11 @@ class PictureShow extends React.Component {
     }
 
     handleLike(id){
-        // debugger
         if (this.state.likeButton === this.state.likedImg ||( this.state.likeButton === "" && this.props.picture.likers && this.props.picture.likers.includes(this.props.currentUserId))){
             this.setState({likeButton: this.state.notLikedImg, likeCount: this.state.likeCount - 1})
             this.props.unlikePicture(id)
         } else {
             this.setState({likeButton: this.state.likedImg, likeCount: this.state.likeCount + 1}) 
-            //  like = {like: {liker_id: this.props.currentUserId, picture_id: this.props.pictureId}}
             this.props.likePicture(id)
         }  
     }

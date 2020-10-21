@@ -14,8 +14,6 @@ class PictureIndex extends React.Component  {
     render() {
         const pictures = this.props.pictures ? (this.props.pictures) : null
 
-        // const filtered_pictures = this.props.pictures ? pictures.filter(picture=> picture.editors_choice === true) : null
-
         const filtered_pictures = this.props.pictures ? pictures : null
         const display = Object.keys(pictures).length > 0 ? (
             <div className="picture-index">
