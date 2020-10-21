@@ -14,7 +14,7 @@ import SearchIndexContainer from './search/search_index_container';
 import ReactGA from 'react-ga';
 
 function initializeReactGA() {
-    ReactGA.initialize('UA-123791717-1');
+    ReactGA.initialize('UA-180668681-1');
     ReactGA.pageview('/homepage');
 }
 
