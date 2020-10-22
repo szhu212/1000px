@@ -12,11 +12,22 @@ import PictureDiscoverContainer from './picture/picture_descover_container';
 import UserProfileContainer from './profile/user_profile_container';
 import SearchIndexContainer from './search/search_index_container';
 import ReactGA from 'react-ga';
+import { createBrowserHistory } from 'history';
 
-function initializeReactGA() {
-    ReactGA.initialize('UA-180668681-1');
-    ReactGA.pageview('/homepage');
-}
+const trackingId = 'UA-180668681-1'
+ReactGA.initialize(trackingId);
+
+
+const history = createBrowserHistory();
+history.listen(location => {
+    ReactGA.set({ page: location.pathname }); // Update the user's current page
+    ReactGA.pageview(location.pathname); // Record a pageview for the given page
+  });
+
+// export const PageView = () => {  
+//     ReactGA.pageview(window.location.pathname +  
+//                      window.location.search); 
+// }
 
 const App = () => (
     <div>
